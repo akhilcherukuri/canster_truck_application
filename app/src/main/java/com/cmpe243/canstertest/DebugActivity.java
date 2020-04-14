@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,9 @@ public class DebugActivity extends AppCompatActivity {
     private String mConnectedDeviceAddress = null;
     private BluetoothChatService mChatService = null;
     private StringBuffer mOutStringBuffer;
-    StringBuilder appendMessages;
+    StringBuilder appendMessages, appendMessages2;
+    String inputPacketString;
+    private static final char ENDLINE = '\n';
 
     Button send_btn,start_btn,stop_btn;
     TextView status,rxData;
@@ -48,6 +51,7 @@ public class DebugActivity extends AppCompatActivity {
         //end_btn=(Button)findViewById(R.id.end_btn);
         editText=(EditText) findViewById(R.id.editText);
         appendMessages = new StringBuilder();
+        appendMessages2 = new StringBuilder();
 
         rxData.setMovementMethod(new ScrollingMovementMethod());
 
@@ -129,9 +133,20 @@ public class DebugActivity extends AppCompatActivity {
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
                     //rxData.setText(" ");
-                    String readMessage = new String(readBuf, 0, msg.arg1);
-                    appendMessages.append("RX: \t" + readMessage + "\n");
-                    rxData.setText(appendMessages);
+                    //String readMessage = new String(readBuf, 0, msg.arg1);
+                    for(int i=0;i<readBuf.length;i++){
+                        byte rx_char=readBuf[i];
+                        if(rx_char == ENDLINE){
+                            inputPacketString+=Character.toString((char)rx_char);
+                            parseMessage(inputPacketString);
+                            inputPacketString="";
+                        }
+                        else{
+                            inputPacketString+=Character.toString((char)rx_char);
+                        }
+                    }
+                    //appendMessages.append("RX: \t" + readMessage + "\n");
+                    //rxData.setText(appendMessages);
                     userToast(" ","Status: Incoming Message",false);
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
@@ -146,24 +161,30 @@ public class DebugActivity extends AppCompatActivity {
     });
 
     public void send_btn(View view) {
-        String message = editText.getText().toString();
+        String message = (editText.getText().toString() + "\r\n");
         appendMessages.append("TX: \t" + message + "\n");
         rxData.setText(appendMessages);
         sendMessage(message);
     }
 
     public void start_btn(View view) {
-        String message = "$START";
-        appendMessages.append("\nTX: \t" + message + "\n");
+        String message = "$START \r\n";
+        appendMessages.append("TX: \t" + message + "\n");
         rxData.setText(appendMessages);
         sendMessage(message);
     }
 
     public void stop_btn(View view) {
-        String message = "$STOP";
-        appendMessages.append("\nTX: \t" + message + "\n");
+        String message = "$STOP \r\n";
+        appendMessages.append("TX: \t" + message + "\n");
         rxData.setText(appendMessages);
         sendMessage(message);
+    }
+
+    private void parseMessage(String readMessage) {
+        appendMessages.append("RX: \t" + readMessage + "\n");
+        rxData.setText(appendMessages);
+        //rxData.setText("RX: "+readMessage);
     }
 
 
