@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="89dp"
+            android:textSize="14sp" />
+
+        <ListView
+            android:id="@+id/list_pair"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="17dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_layout"
+            android:layout_marginTop="19dp"
+            android:text="Paired Devices :"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/list_new"
+            android:layout_width="match_parent"
+            android:layout_height="265dp"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="16dp"
+            android:scrollbars="vertical"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_pair"
+            android:layout_marginTop="12dp"
+            android:text="New Devices :"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="130dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_on_off"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="onOffButtonClicked"
+                android:text="ON/OFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_search"
+                style="@android:style/Widget.DeviceDefault.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/button_layout"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="searchButtonClicked"
+                android:text="Search"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
