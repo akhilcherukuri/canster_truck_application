@@ -168,14 +168,14 @@ public class DebugActivity extends AppCompatActivity {
     }
 
     public void start_btn(View view) {
-        String message = "$START \r\n";
+        String message = "$START\r\n";
         appendMessages.append("TX: \t" + message + "\n");
         rxData.setText(appendMessages);
         sendMessage(message);
     }
 
     public void stop_btn(View view) {
-        String message = "$STOP \r\n";
+        String message = "$STOP\r\n";
         appendMessages.append("TX: \t" + message + "\n");
         rxData.setText(appendMessages);
         sendMessage(message);
