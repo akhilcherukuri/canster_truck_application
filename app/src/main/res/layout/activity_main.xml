@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:layout_width="410dp"
+        android:layout_height="376dp"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="89dp"
+            android:layout_marginTop="52dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             android:textSize="14sp" />
 
         <ListView
@@ -30,6 +34,8 @@
             android:layout_height="104dp"
             android:layout_below="@+id/textView2"
             android:layout_marginTop="17dp"
+            android:background="#000000"
+            android:cacheColorHint="#FFFFFF"
             android:scrollbars="vertical" />
 
         <TextView
@@ -39,6 +45,8 @@
             android:layout_below="@+id/button_layout"
             android:layout_marginTop="19dp"
             android:text="Paired Devices :"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             android:textStyle="bold" />
 
         <ListView
@@ -95,5 +103,22 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="335dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="75dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/canstertrucklogoapril"
+        tools:srcCompat="@drawable/canstertrucklogoapril"
+        tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>
