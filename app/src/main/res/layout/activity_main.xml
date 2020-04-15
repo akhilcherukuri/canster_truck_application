@@ -7,118 +7,105 @@
     android:background="#000000"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="410dp"
-        android:layout_height="376dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <TextView
-            android:id="@+id/tv_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="52dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textSize="14sp" />
-
-        <ListView
-            android:id="@+id/list_pair"
-            android:layout_width="match_parent"
-            android:layout_height="104dp"
-            android:layout_below="@+id/textView2"
-            android:layout_marginTop="17dp"
-            android:background="#000000"
-            android:cacheColorHint="#FFFFFF"
-            android:scrollbars="vertical" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button_layout"
-            android:layout_marginTop="19dp"
-            android:text="Paired Devices :"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:textStyle="bold" />
-
-        <ListView
-            android:id="@+id/list_new"
-            android:layout_width="match_parent"
-            android:layout_height="265dp"
-            android:layout_below="@+id/textView3"
-            android:layout_marginTop="16dp"
-            android:scrollbars="vertical"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/list_pair"
-            android:layout_marginTop="12dp"
-            android:text="New Devices :"
-            android:textStyle="bold"
-            android:visibility="invisible" />
-
-        <LinearLayout
-            android:id="@+id/button_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="130dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_on_off"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:onClick="onOffButtonClicked"
-                android:text="ON/OFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btn_search"
-                style="@android:style/Widget.DeviceDefault.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/button_layout"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:onClick="searchButtonClicked"
-                android:text="Search"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="350dp"
         android:layout_height="335dp"
         android:layout_marginStart="98dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="99dp"
-        android:layout_marginBottom="75dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/canstertrucklogoapril"
         tools:srcCompat="@drawable/canstertrucklogoapril"
         tools:visibility="visible" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="374dp"
+        android:layout_height="329dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <TextView
+            android:id="@+id/tv_list"
+            android:layout_width="358dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="9dp"
+            android:text="Paired Devices:"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/listViewPaired"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ListView
+            android:id="@+id/listViewPaired"
+            android:layout_width="373dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="28dp"
+            android:scrollbars="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/searchButton"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="130dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="searchButtonClicked"
+            android:text="SEARCH"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/statusBluetooth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/onOffButton"
+            app:layout_constraintTop_toBottomOf="@+id/listViewPaired" />
+
+        <Button
+            android:id="@+id/onOffButton"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="129dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="onOffButtonClicked"
+            android:text="ON/OFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/statusBluetooth"
+            app:layout_constraintEnd_toStartOf="@+id/searchButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listViewPaired"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/statusBluetooth"
+            android:layout_width="349dp"
+            android:layout_height="28dp"
+            android:layout_marginBottom="94dp"
+            android:text="Status :"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

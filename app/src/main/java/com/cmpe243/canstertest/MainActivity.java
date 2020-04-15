@@ -39,18 +39,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchButton=(Button) findViewById(R.id.btn_search);
-        onOffButton =(Button) findViewById(R.id.btn_on_off);
-        statusBluetooth =(TextView) findViewById(R.id.tv_status);
-        listViewPaired =(ListView)findViewById(R.id.list_pair);
-        listViewNewDevices =(ListView)findViewById(R.id.list_new);
+        searchButton=(Button) findViewById(R.id.searchButton);
+        onOffButton =(Button) findViewById(R.id.onOffButton);
+        statusBluetooth =(TextView) findViewById(R.id.statusBluetooth);
+        listViewPaired =(ListView)findViewById(R.id.listViewPaired);
+        //listViewNewDevices =(ListView)findViewById(R.id.list_new);
 
         bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
         pairedDevicesArrayAdapter =new ArrayList<>();
         newDevicesArrayAdapter = new ArrayList<>();
 
         listViewPaired.setOnItemClickListener(mDeviceClickListener);
-        listViewNewDevices.setOnItemClickListener(mDeviceClickListener);
+//        listViewNewDevices.setOnItemClickListener(mDeviceClickListener);
 
         IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver1, BTIntent);
@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
     public void searchButtonClicked(View view) {
         Log.d(TAG, "SEARCH: BUTTON PRESSED");
         listViewPaired.setAdapter(null);
-        listViewNewDevices.setAdapter(null);
-        newDevicesArrayAdapter.clear();
+        //listViewNewDevices.setAdapter(null);
+        //newDevicesArrayAdapter.clear();
         pairedDevicesArrayAdapter.clear();
         doBluetoothDiscovery();
     }
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 //        else{ searchButton.setEnabled(true); }
         statusBluetooth.setText("");
         listViewPaired.setAdapter(null);
-        listViewNewDevices.setAdapter(null);
+//        listViewNewDevices.setAdapter(null);
     }
 
     private AdapterView.OnItemClickListener mDeviceClickListener
