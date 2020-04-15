@@ -71,17 +71,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchButtonClicked(View view) {
         Log.d(TAG, "SEARCH: BUTTON PRESSED");
-        listViewPaired.setAdapter(null);
+        if (!bluetoothAdapter.isEnabled()){
+            enableBluetooth();
+        }
+        else if (bluetoothAdapter.isEnabled()) {
+            listViewPaired.setAdapter(null);
+            pairedDevicesArrayAdapter.clear();
+            doBluetoothDiscovery();
+            statusBluetooth.setText("BLUETOOTH DISCOVERY");
+        }
+        //enableBluetooth();
+        //listViewPaired.setAdapter(null);
+        //statusBluetooth.setText("");
+        //pairedDevicesArrayAdapter.clear();
+        //doBluetoothDiscovery();
         //listViewNewDevices.setAdapter(null);
         //newDevicesArrayAdapter.clear();
-        pairedDevicesArrayAdapter.clear();
-        doBluetoothDiscovery();
     }
 
     private void bluetoothStart() {
 //        if(!bluetoothAdapter.isEnabled()){ searchButton.setEnabled(false); }
 //        else{ searchButton.setEnabled(true); }
-        statusBluetooth.setText("");
+        if(!bluetoothAdapter.isEnabled()) {
+            statusBluetooth.setText("BLUETOOTH DISABLED");
+        }
+        else {statusBluetooth.setText("BLUETOOTH ENABLED");}
+        //statusBluetooth.setText("");
         listViewPaired.setAdapter(null);
 //        listViewNewDevices.setAdapter(null);
     }
@@ -138,12 +153,14 @@ public class MainActivity extends AppCompatActivity {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, bluetoothAdapter.ERROR);
                 switch(state){
                     case BluetoothAdapter.STATE_OFF:
+                        searchButton.setText("ENABLE");
                         Log.d(TAG, "mBroadcastReceiver1: STATE OFF");
-                        userToast("Bluetooth DISABLED");
+                        userToast("BLUETOOTH DISABLED");
                         break;
                     case BluetoothAdapter.STATE_ON:
+                        searchButton.setText("SEARCH");
                         Log.d(TAG, "mBroadcastReceiver1: STATE ON");
-                        userToast("Bluetooth ENABLED");
+                        userToast("BLUETOOTH ENABLED");
                         break;
                 }
             }
@@ -186,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     //THIS IS TO JUST SENT THE TOAST MESSAGES AS STATUS
     public void userToast(String toastMessage){
         Toast.makeText(getApplicationContext(),toastMessage,Toast.LENGTH_SHORT).show();
-        statusBluetooth.setText("Status: "+toastMessage);
+        statusBluetooth.setText(toastMessage);
     }
 
     //THIS IS NEEDED FOR BLUETOOTH PERMISSIONS FOR DEVICES ABOVE LOLLIPOP VERSION, FOR DEVICES BELOW API 23 CAN IGNORE THIS FUNCTION

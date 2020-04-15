@@ -87,11 +87,13 @@
             android:text="ON/OFF"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/statusBluetooth"
             app:layout_constraintEnd_toStartOf="@+id/searchButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listViewPaired"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:visibility="gone" />
 
         <TextView
             android:id="@+id/statusBluetooth"
@@ -99,6 +101,7 @@
             android:layout_height="28dp"
             android:layout_marginBottom="94dp"
             android:text="Status :"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textSize="15sp"
