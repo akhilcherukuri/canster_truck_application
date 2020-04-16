@@ -22,6 +22,9 @@ public interface Constants {
     public static final int MESSAGE_WRITE = 3;
     public static final int MESSAGE_DEVICE_NAME = 4;
     public static final int MESSAGE_TOAST = 5;
+    public static final int MESSAGE_DEVICE_ADDRESS = 6;
     public static final String DEVICE_NAME = "device_name";
+    public static final String DEVICE_ADDRESS ="device_Address";
     public static final String TOAST = "toast";
+
 }

@@ -6,18 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class DebugActivity extends AppCompatActivity {
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
     private static final int REQUEST_ENABLE_BT = 3;
+//    private static final int MESSAGE_DEVICE_ADDRESS = 6;
     private static final String TAG = "Debug_Activity";
     private BluetoothAdapter mBluetoothAdapter = null;
     private String mConnectedDeviceName = null;
@@ -27,6 +33,7 @@ public class DebugActivity extends AppCompatActivity {
     StringBuilder appendMessages, appendMessages2;
     String inputPacketString;
     private static final char ENDLINE = '\n';
+    public static String EXTRA_ADDRESS = "device_address";
 
     Button send_btn,start_btn,stop_btn;
     TextView status,rxData;
@@ -35,12 +42,13 @@ public class DebugActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
-        Intent internt = getIntent();
 
-        //Bluetooth_Setting:---------------------------------
-        mConnectedDeviceAddress = internt.getStringExtra(MainActivity.EXTRA_ADDRESS);
+        //Bluetooth_Setting:
+        Intent intent = getIntent();
+        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
+        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        //Bluetooth_Setting:---------------------------------
+        //Bluetooth_Setting:
 
         rxData=(TextView)findViewById(R.id.rxData) ;
         status=(TextView)findViewById(R.id.status);
@@ -54,7 +62,28 @@ public class DebugActivity extends AppCompatActivity {
 
         rxData.setMovementMethod(new ScrollingMovementMethod());
 
-        userToast("Status: Connected to ",mConnectedDeviceAddress,false);
+        userToast("Status: Connected to ",mConnectedDeviceAddress,true);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_maps:
+                        Intent openActivity2 = new Intent(DebugActivity.this, MapsActivity.class);
+                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+                        startActivity(openActivity2);
+                        break;
+                    case R.id.navigation_debug:
+                        Toast.makeText(DebugActivity.this, "Already On Debug", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.navigation_bluetooth:
+//                        mChatService.stop();
+//                        setupChat();
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -86,8 +115,7 @@ public class DebugActivity extends AppCompatActivity {
         connectDevice(false);
     }
 
-
-    private void sendMessage(String message) {
+    public void sendMessage(String message) {
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
             userToast("Status: ","Not Connected!.Try Again",false);
             return;
@@ -151,6 +179,9 @@ public class DebugActivity extends AppCompatActivity {
                 case Constants.MESSAGE_DEVICE_NAME:
                     mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
                     break;
+//                case Constants.MESSAGE_DEVICE_ADDRESS:
+//                    mConnectedDeviceAddress =msg.getData().getString(Constants.DEVICE_ADDRESS);
+//                    break;
                 case Constants.MESSAGE_TOAST:
                     break;
             }

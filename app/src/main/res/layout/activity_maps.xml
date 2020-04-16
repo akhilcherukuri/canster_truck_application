@@ -3,53 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity">
+    android:background="#000000">
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="250dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:context=".MapsActivity" />
-
 
     <Button
         android:id="@+id/mapStartButton"
-        android:layout_width="189dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="188dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="427dp"
+        android:layout_marginBottom="256dp"
+        android:background="#64DD17"
+        android:onClick="startTripButtonClicked"
         android:text="START"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mapStopButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/mapStopButton"
-        android:layout_width="199dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="188dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="427dp"
+        android:layout_marginBottom="256dp"
+        android:background="#D50000"
+        android:onClick="stopTripButtonClicked"
         android:text="STOP"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapStartButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mapStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="154dp"
+        android:gravity="center_horizontal"
+        android:text="Status: "
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/black"
+        android:hapticFeedbackEnabled="true"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

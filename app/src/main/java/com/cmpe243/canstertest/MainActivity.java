@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    public static String EXTRA_ADDRESS = "device_Address";
+    public static String EXTRA_ADDRESS = "device_address";
 
     Button searchButton, onOffButton;
     TextView statusBluetooth;
@@ -110,12 +110,13 @@ public class MainActivity extends AppCompatActivity {
 
             userToast("Connected to: "+ mBTDevice.getName());
             String device_name=mBTDevice.getName();
-            String device_Address=mBTDevice.getAddress();
+            String device_address=mBTDevice.getAddress();
             bluetoothStart();
 
             Log.d(TAG, "Calling New Activity" );
             Intent newintent = new Intent(MainActivity.this, DebugActivity.class);
-            newintent.putExtra(EXTRA_ADDRESS,device_Address);
+            newintent.putExtra(EXTRA_ADDRESS,device_address);
+            Log.d(TAG, "Connected to:" +mBTDevice.getAddress());
             startActivity(newintent);
         }
     };
