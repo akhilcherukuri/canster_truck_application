@@ -108,15 +108,15 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "DISCOVERY: CANCELLED");
             mBTDevice= (BluetoothDevice) av.getAdapter().getItem(arg2);
 
-            userToast("Connected to: "+ mBTDevice.getName());
+            //userToast("Connected to: "+ mBTDevice.getName());
+            Log.d(TAG, "Connected to:" +mBTDevice.getAddress());
             String device_name=mBTDevice.getName();
             String device_address=mBTDevice.getAddress();
             bluetoothStart();
 
             Log.d(TAG, "Calling New Activity" );
-            Intent newintent = new Intent(MainActivity.this, DebugActivity.class);
+            Intent newintent = new Intent(MainActivity.this, MapsActivity.class);
             newintent.putExtra(EXTRA_ADDRESS,device_address);
-            Log.d(TAG, "Connected to:" +mBTDevice.getAddress());
             startActivity(newintent);
         }
     };

@@ -1,8 +1,6 @@
 package com.cmpe243.canstertest;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import android.bluetooth.BluetoothAdapter;
@@ -21,13 +19,18 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.cmpe243.canstertest.DebugActivity;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+
+    //==============================BLUETOOTH==============================
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
     private static final int REQUEST_ENABLE_BT = 3;
@@ -37,37 +40,54 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private String mConnectedDeviceAddress = null;
     private BluetoothChatService mChatService = null;
     private StringBuffer mOutStringBuffer;
-    StringBuilder appendMessages, appendMessages2;
+    StringBuilder appendMessages;
     String inputPacketString;
     private static final char ENDLINE = '\n';
     public static String EXTRA_ADDRESS = "device_address";
-    private String connection_status;
+    //==============================BLUETOOTH==============================
 
+    //==============================OUTPUT==============================
+    TextView tVLat, tVLng, tVCompass, tVHeading;
+    //==============================OUTPUT==============================
+
+    //==============================MAPS==============================
     private GoogleMap mMap;
+    private Marker currentLocation, destinationLocation;
+    private double destinationLat = 0.0, destinationLng = 0.0;
+    LatLng cansterCurrent, cansterDestination;
     Button startTrip, endTrip;
     TextView statusMap;
+    //==============================MAPS==============================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        //Bluetooth_Setting:
+        //==============================BLUETOOTH==============================
         Intent intent = getIntent();
         mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
         mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        //Bluetooth_Setting:
+        //==============================BLUETOOTH==============================
 
+        //==============================findViewById==============================
         startTrip = (Button) findViewById(R.id.mapStartButton);
         endTrip = (Button) findViewById(R.id.mapStopButton);
         statusMap=(TextView)findViewById(R.id.mapStatus);
+        tVLat=(TextView)findViewById(R.id.tV_mapLat);
+        tVLng=(TextView)findViewById(R.id.tV_mapLng);
+        tVCompass=(TextView)findViewById(R.id.tV_mapCompass);
+        tVHeading=(TextView)findViewById(R.id.tV_mapHeading);
+        //==============================findViewByID==============================
 
+        //==============================MAPS==============================
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //==============================MAPS==============================
 
-        //userToast("Status: Connected to ",mConnectedDeviceAddress,false);
+        //==============================BOTTOMNAVBAR==============================
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -84,35 +104,61 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     case R.id.navigation_maps:
                         Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.navigation_bluetooth:
+//                    case R.id.navigation_bluetooth:
 //                        mChatService.stop();
 //                        setupChat();
-                        break;
+//                        break;
                 }
                 return true;
             }
         });
+        //==============================BOTTOMNAVBAR==============================
 
+        //==============================TOPTOOLBAR==============================
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(myToolbar);
+        //==============================TOPTOOLBAR==============================
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in SJSU and move the camera
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         LatLng SJSU = new LatLng(37.336212, -121.882324);
-        mMap.addMarker(new MarkerOptions().position(SJSU).title("San Jose State University"));
+        mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SJSU));
         mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(SJSU.latitude,SJSU.longitude),17.0f ));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                destinationLat = latLng.latitude; destinationLng = latLng.longitude;
+                cansterDestination = new LatLng(destinationLat,destinationLng);
+                mMap.addMarker(new MarkerOptions().position(cansterDestination).title("Destination").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                userToast("Destination Marker:",cansterDestination.toString(),false);
+            }
+        });
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                marker.remove();
+                userToast("Destination Marker:","Removed",false);
+                return true;
+            }
+        });
+
     }
 
     public void startTripButtonClicked(View view) {
-        String message = "$START\r\n";
+        String message = "$START" +","+ destinationLat +","+ destinationLng +"\r\n";
+        userToast("Status: ","START message sent",false);
         sendMessage(message);
     }
     public void stopTripButtonClicked(View view) {
         String message = "$STOP\r\n";
+        userToast("Status: ","STOP message sent",false);
         sendMessage(message);
     }
 
@@ -135,7 +181,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void sendMessage(String message) {
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
-            userToast("Status: ","Not Connected!.Try Again",false);
+            userToast("Status: ","No Connection!",false);
             return;
         }
 
@@ -177,7 +223,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     // construct a string from the buffer
                     //String writeMessage = new String(writeBuf);
                     //mConversationArrayAdapter.add("Me:  " + writeMessage);
-                    userToast("Status: ","Message Sent",false);
+                    //userToast("Status: ","Message Sent",false);
                     break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;

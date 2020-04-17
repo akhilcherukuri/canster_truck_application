@@ -58,8 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="154dp"
-        android:gravity="center_horizontal"
         android:text="Status: "
+        android:gravity="center_vertical"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
@@ -83,6 +83,66 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <TextView
+        android:id="@+id/tV_mapLat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Latitude:"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapLng"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapStatus" />
+
+    <TextView
+        android:id="@+id/tV_mapLng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Longitude:"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapCompass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapLat" />
+
+    <TextView
+        android:id="@+id/tV_mapCompass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="Compass Value:"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapHeading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapLng" />
+
+    <TextView
+        android:id="@+id/tV_mapHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="77dp"
+        android:text="Heading:"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
