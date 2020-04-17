@@ -45,8 +45,7 @@ public class DebugActivity extends AppCompatActivity {
 
         //Bluetooth_Setting:
         Intent intent = getIntent();
-        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
-        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
+        mConnectedDeviceAddress = intent.getStringExtra(MapsActivity.EXTRA_ADDRESS);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //Bluetooth_Setting:
 
@@ -68,18 +67,19 @@ public class DebugActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.navigation_maps:
-                        Intent openActivity2 = new Intent(DebugActivity.this, MapsActivity.class);
-                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
-                        startActivity(openActivity2);
-                        break;
+//                    case R.id.navigation_maps:
+//                        //onDestroy();
+//                        Intent openActivity3 = new Intent(DebugActivity.this, MapsActivity.class);
+//                        openActivity3.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+//                        startActivity(openActivity3);
+//                        break;
                     case R.id.navigation_debug:
                         Toast.makeText(DebugActivity.this, "Already On Debug", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.navigation_bluetooth:
+//                    case R.id.navigation_bluetooth:
 //                        mChatService.stop();
 //                        setupChat();
-                        break;
+//                        break;
                 }
                 return true;
             }
@@ -95,6 +95,7 @@ public class DebugActivity extends AppCompatActivity {
             mChatService.stop();
         }
         mBluetoothAdapter.cancelDiscovery();
+        finish();
     }
 
 
@@ -147,6 +148,7 @@ public class DebugActivity extends AppCompatActivity {
                         case BluetoothChatService.STATE_LISTEN:
                         case BluetoothChatService.STATE_NONE:
                             userToast(" ", "Unable to Connect.Try Again",false);
+
                             break;
                     }
                     break;

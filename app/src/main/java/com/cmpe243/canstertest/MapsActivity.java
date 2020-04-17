@@ -67,7 +67,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //==============================BLUETOOTH==============================
         Intent intent = getIntent();
         mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
-        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //==============================BLUETOOTH==============================
 
@@ -94,10 +93,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_debug:
+                        //onDestroy();
                         Intent openActivity2 = new Intent(MapsActivity.this, DebugActivity.class);
                         openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
 //                        Intent intent = getIntent();
-//                        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
+//                        mConnectedDeviceAddress = intent.getStringExtra(MapsActivity.EXTRA_ADDRESS);
 //                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
                         startActivity(openActivity2);
                         break;
@@ -125,8 +125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         // Add a marker in SJSU and move the camera
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        LatLng SJSU = new LatLng(37.336212, -121.882324);
-        mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        LatLng SJSU = new LatLng(37.339312, -121.881111);
+        mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.fromResource(R.drawable.car)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SJSU));
         mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(SJSU.latitude,SJSU.longitude),17.0f ));
 
@@ -279,6 +279,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mChatService.stop();
         }
         mBluetoothAdapter.cancelDiscovery();
+        //mBluetoothAdapter.disable();
+        finish();
     }
 
 }
