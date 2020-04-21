@@ -163,15 +163,16 @@ public class DebugActivity extends AppCompatActivity {
                     byte[] readBuf = (byte[]) msg.obj;
                     //rxData.setText(" ");
                     //String readMessage = new String(readBuf, 0, msg.arg1);
-                    for(int i=0;i<readBuf.length;i++){
-                        byte rx_char=readBuf[i];
-                        if(rx_char == ENDLINE){
-                            inputPacketString+=Character.toString((char)rx_char);
-                            parseMessage(inputPacketString);
-                            inputPacketString="";
-                        }
-                        else{
-                            inputPacketString+=Character.toString((char)rx_char);
+                    if(readBuf != null) {
+                        for (int i = 0; i < readBuf.length; i++) {
+                            byte rx_char = readBuf[i];
+                            if (rx_char == ENDLINE) {
+                                inputPacketString += Character.toString((char) rx_char);
+                                parseMessage(inputPacketString);
+                                inputPacketString = "";
+                            } else {
+                                inputPacketString += Character.toString((char) rx_char);
+                            }
                         }
                     }
                     //appendMessages.append("RX: \t" + readMessage + "\n");
