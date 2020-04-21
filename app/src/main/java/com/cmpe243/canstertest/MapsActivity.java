@@ -1,6 +1,7 @@
 package com.cmpe243.canstertest;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.bluetooth.BluetoothAdapter;
@@ -27,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 
     //==============================BLUETOOTH==============================
@@ -67,7 +68,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //==============================BLUETOOTH==============================
         Intent intent = getIntent();
         mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
-        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //==============================BLUETOOTH==============================
 
@@ -97,17 +97,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Intent openActivity2 = new Intent(MapsActivity.this, DebugActivity.class);
                         openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
 //                        Intent intent = getIntent();
-//                        mConnectedDeviceAddress = intent.getStringExtra(MainActivity.EXTRA_ADDRESS);
+//                        mConnectedDeviceAddress = intent.getStringExtra(MapsActivity.EXTRA_ADDRESS);
 //                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
-                        startActivity(openActivity2);
+//                        startActivity(openActivity2);
                         break;
                     case R.id.navigation_maps:
                         Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
                         break;
-//                    case R.id.navigation_bluetooth:
+                    case R.id.navigation_bluetooth:
 //                        mChatService.stop();
 //                        setupChat();
-//                        break;
+                        break;
                 }
                 return true;
             }
@@ -125,8 +125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         // Add a marker in SJSU and move the camera
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        LatLng SJSU = new LatLng(37.336212, -121.882324);
-        mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        LatLng SJSU = new LatLng(37.339312, -121.881111);
+        mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.fromResource(R.drawable.car)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(SJSU));
         mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(SJSU.latitude,SJSU.longitude),17.0f ));
 
@@ -144,6 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 marker.remove();
+                destinationLat = 0.0; destinationLng =0.0;
                 userToast("Destination Marker:","Removed",false);
                 return true;
             }
@@ -189,7 +190,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             byte[] send = message.getBytes();
             mChatService.write(send);
             mOutStringBuffer.setLength(0);
-            //editText.setText(mOutStringBuffer);
         }
     }
 
@@ -210,46 +210,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             userToast("Status: "," Connected to "+mConnectedDeviceName,false);
                             break;
                         case BluetoothChatService.STATE_CONNECTING:
-                            userToast("Status: ", "Connecting...",false);
+                            userToast("Status: ", "Connecting",false);
                             break;
                         case BluetoothChatService.STATE_LISTEN:
                         case BluetoothChatService.STATE_NONE:
-                            userToast(" ", "Unable to Connect.Try Again",false);
+                            userToast("Status: ", "No Connection",false);
                             break;
                     }
                     break;
                 case Constants.MESSAGE_WRITE:
                     byte[] writeBuf = (byte[]) msg.obj;
-                    // construct a string from the buffer
-                    //String writeMessage = new String(writeBuf);
-                    //mConversationArrayAdapter.add("Me:  " + writeMessage);
-                    //userToast("Status: ","Message Sent",false);
                     break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
-                    //rxData.setText(" ");
-                    //String readMessage = new String(readBuf, 0, msg.arg1);
-                    for(int i=0;i<readBuf.length;i++){
-                        byte rx_char=readBuf[i];
-                        if(rx_char == ENDLINE){
-                            inputPacketString+=Character.toString((char)rx_char);
-                            parseMessage(inputPacketString);
-                            inputPacketString="";
-                        }
-                        else{
-                            inputPacketString+=Character.toString((char)rx_char);
+                    if (readBuf != null) {
+                        for (int i = 0; i < readBuf.length; i++) {
+                            byte rx_char = readBuf[i];
+                            if (rx_char == ENDLINE) {
+                                inputPacketString += Character.toString((char) rx_char);
+                                parseMessage(inputPacketString);
+                                inputPacketString = "";
+                            } else {
+                                inputPacketString += Character.toString((char) rx_char);
+                            }
                         }
                     }
-                    //appendMessages.append("RX: \t" + readMessage + "\n");
-                    //rxData.setText(appendMessages);
                     userToast(" ","Status: Incoming Message",false);
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
                     break;
-                case Constants.MESSAGE_DEVICE_ADDRESS:
-                    mConnectedDeviceAddress =msg.getData().getString(Constants.DEVICE_ADDRESS);
-                    break;
+//                case Constants.MESSAGE_DEVICE_ADDRESS:
+//                    mConnectedDeviceAddress =msg.getData().getString(Constants.DEVICE_ADDRESS);
+//                    break;
                 case Constants.MESSAGE_TOAST:
                     break;
             }
@@ -259,9 +252,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     });
 
     private void parseMessage(String readMessage) {
-        appendMessages.append("RX: \t" + readMessage + "\n");
-        //rxData.setText(appendMessages);
-        //rxData.setText("RX: "+readMessage);
+        //appendMessages.append("RX: \t" + readMessage + "\n");
+        tVHeading.setText("RX:\t" + readMessage);
     }
 
     public void userToast(String prefix, String message, boolean toast) {
@@ -279,6 +271,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mChatService.stop();
         }
         mBluetoothAdapter.cancelDiscovery();
+        //mBluetoothAdapter.disable();
+        finish();
     }
 
 }
