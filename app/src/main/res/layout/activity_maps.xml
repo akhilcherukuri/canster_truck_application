@@ -18,8 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context=".MapsActivity"
-        tools:visibility="visible" />
+        tools:context=".MapsActivity" />
 
     <!--    <Button-->
     <!--        android:id="@+id/mapStartButton"-->
@@ -64,7 +63,7 @@
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapCompass"
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapLat"
         app:layout_constraintTop_toBottomOf="@+id/map" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -91,8 +90,8 @@
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapHeading"
-        app:layout_constraintTop_toBottomOf="@+id/tV_mapLng"
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapLng"
+        app:layout_constraintTop_toBottomOf="@+id/mapStatus"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
@@ -104,34 +103,47 @@
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapLat"
-        app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass"
-        tools:layout_editor_absoluteX="27dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapCompass"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapLat"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/tV_mapCompass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Compass Value:"
+        android:text="Compass Heading:"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapLng"
-        app:layout_constraintTop_toBottomOf="@+id/mapStatus"
-        tools:layout_editor_absoluteX="27dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapLng"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/tV_mapHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Heading:"
+        android:text="Speed:"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tV_Battery"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tV_Battery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Battery:"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
-        app:layout_constraintTop_toBottomOf="@+id/tV_mapLat"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapHeading"
         tools:layout_editor_absoluteX="0dp" />
 
 

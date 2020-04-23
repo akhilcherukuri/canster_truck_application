@@ -29,6 +29,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.StringTokenizer;
+
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -50,7 +52,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     //==============================BLUETOOTH==============================
 
     //==============================OUTPUT==============================
-    TextView tVLat, tVLng, tVCompass, tVHeading;
+    TextView tVLat, tVLng, tVCompass, tVHeading, tVBattery;
     //==============================OUTPUT==============================
 
     //==============================MAPS==============================
@@ -81,6 +83,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         tVLng=(TextView)findViewById(R.id.tV_mapLng);
         tVCompass=(TextView)findViewById(R.id.tV_mapCompass);
         tVHeading=(TextView)findViewById(R.id.tV_mapHeading);
+        tVBattery=(TextView)findViewById(R.id.tV_Battery);
         //==============================findViewByID==============================
 
         //==============================MAPS==============================
@@ -270,7 +273,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void parseMessage(String readMessage) {
         //appendMessages.append("RX: \t" + readMessage + "\n");
-        tVHeading.setText("RX:\t" + readMessage);
+        String incomingMessage = readMessage;
+//        String preFix = "$canster,";
+//        String noPreFix = incomingMessage.substring(incomingMessage.indexOf(preFix)+ preFix.length());
+//        String[] tokens = noPreFix.split(",");
+//        tVLat.setText("Latitude:\t" + tokens[1].toString());
+//        tVLng.setText("Longitude:\t" + tokens[2].toString());
+//        tVCompass.setText("Compass Heading:\t" + tokens[3].toString());
+//        tVHeading.setText("Battery:\t" + tokens[4].toString());
+        StringTokenizer tokenizer = new StringTokenizer(incomingMessage, ",");
+        String dirIgnore = tokenizer.nextToken();
+        String dirLat = tokenizer.nextToken();
+        String dirLng = tokenizer.nextToken();
+        String dirCompass = tokenizer.nextToken();
+        String dirSpeed = tokenizer.nextToken();
+        String dirBattery = tokenizer.nextToken();
+        tVLat.setText("Latitude:\t" + dirLat);
+        tVLng.setText("Longitude:\t" + dirLng);
+        tVCompass.setText("Compass Heading:\t" + dirCompass);
+        tVHeading.setText("Speed:\t" + dirSpeed);
+        tVBattery.setText("Battery:\t" + dirBattery);
     }
 /*==================================================================================================================================
     userToast is used to Log messages to show in status textView,
