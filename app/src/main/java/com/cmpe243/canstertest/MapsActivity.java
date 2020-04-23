@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -72,8 +74,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //==============================BLUETOOTH==============================
 
         //==============================findViewById==============================
-        startTrip = (Button) findViewById(R.id.mapStartButton);
-        endTrip = (Button) findViewById(R.id.mapStopButton);
+        //startTrip = (Button) findViewById(R.id.mapStartButton);
+        //endTrip = (Button) findViewById(R.id.mapStopButton);
         statusMap=(TextView)findViewById(R.id.mapStatus);
         tVLat=(TextView)findViewById(R.id.tV_mapLat);
         tVLng=(TextView)findViewById(R.id.tV_mapLng);
@@ -88,25 +90,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //==============================MAPS==============================
 
         //==============================BOTTOMNAVBAR==============================
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_debug:
-                        Intent openActivity2 = new Intent(MapsActivity.this, DebugActivity.class);
-                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+//                        Intent openActivity2 = new Intent(MapsActivity.this, DebugActivity.class);
+//                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
 //                        Intent intent = getIntent();
 //                        mConnectedDeviceAddress = intent.getStringExtra(MapsActivity.EXTRA_ADDRESS);
 //                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
 //                        startActivity(openActivity2);
-                        break;
+                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.RED));
+                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
+                        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
+                        String message1 = "$STOP\r\n";
+                        userToast("Status: ","STOP message sent",false);
+                        sendMessage(message1);
                     case R.id.navigation_maps:
-                        Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_bluetooth:
 //                        mChatService.stop();
 //                        setupChat();
+                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
+                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
+                        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
+                        String message2 = "$START" +","+ destinationLat +","+ destinationLng +"\r\n";
+                        userToast("Status: ","START message sent",false);
+                        sendMessage(message2);
                         break;
                 }
                 return true;
@@ -119,11 +132,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        setSupportActionBar(myToolbar);
         //==============================TOPTOOLBAR==============================
     }
-
+/*==================================================================================================================================
+    Called when the map is ready to be used
+==================================================================================================================================*/
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // Add a marker in SJSU and move the camera
+        // Add a marker in SJSU 10th Street and move the camera
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         LatLng SJSU = new LatLng(37.339312, -121.881111);
         mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.fromResource(R.drawable.car)));
@@ -152,16 +167,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    public void startTripButtonClicked(View view) {
-        String message = "$START" +","+ destinationLat +","+ destinationLng +"\r\n";
-        userToast("Status: ","START message sent",false);
-        sendMessage(message);
-    }
-    public void stopTripButtonClicked(View view) {
-        String message = "$STOP\r\n";
-        userToast("Status: ","STOP message sent",false);
-        sendMessage(message);
-    }
+//    public void startTripButtonClicked(View view) {
+//        String message = "$START" +","+ destinationLat +","+ destinationLng +"\r\n";
+//        userToast("Status: ","START message sent",false);
+//        sendMessage(message);
+//    }
+//    public void stopTripButtonClicked(View view) {
+//        String message = "$STOP\r\n";
+//        userToast("Status: ","STOP message sent",false);
+//        sendMessage(message);
+//    }
 
     private void connectDevice(boolean secure) {
 
@@ -173,7 +188,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onStart() {
         super.onStart();
         if (!mBluetoothAdapter.isEnabled()) {
-            userToast(" ","Bluetooth OFF.",true);
+            userToast("Status: ","Bluetooth Disabled",true);
             finish();
         } else if (mChatService == null) {
             setupChat();
@@ -182,7 +197,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void sendMessage(String message) {
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
-            userToast("Status: ","No Connection!",false);
+            userToast("Status: ","No Connection",false);
             return;
         }
 
@@ -198,7 +213,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mOutStringBuffer = new StringBuffer("");
         connectDevice(false);
     }
-
+/*==================================================================================================================================
+    Handler allows you to send and process Message and Runnable objects associated with a thread's MessageQueue.
+==================================================================================================================================*/
     Handler mHandler=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -207,7 +224,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 case Constants.MESSAGE_STATE_CHANGE:
                     switch (msg.arg1) {
                         case BluetoothChatService.STATE_CONNECTED:
-                            userToast("Status: "," Connected to "+mConnectedDeviceName,false);
+                            userToast("Status: "," Connected",false);
                             break;
                         case BluetoothChatService.STATE_CONNECTING:
                             userToast("Status: ", "Connecting",false);
@@ -235,7 +252,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             }
                         }
                     }
-                    userToast(" ","Status: Incoming Message",false);
+                    userToast("Status: ","Incoming Message",false);
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
@@ -255,7 +272,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //appendMessages.append("RX: \t" + readMessage + "\n");
         tVHeading.setText("RX:\t" + readMessage);
     }
-
+/*==================================================================================================================================
+    userToast is used to Log messages to show in status textView,
+    @boolean toast = true -> show toast message along with textView
+    @boolean toast = false -> show only textView
+==================================================================================================================================*/
     public void userToast(String prefix, String message, boolean toast) {
         if (toast) {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -263,7 +284,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         statusMap.setText(prefix + message);
 
     }
-
+/*==================================================================================================================================
+    onDestroy() used to release all remaining resources created by onCreate()
+==================================================================================================================================*/
     @Override
     public void onDestroy() {
         super.onDestroy();

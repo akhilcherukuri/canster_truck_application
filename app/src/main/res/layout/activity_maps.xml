@@ -11,62 +11,60 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context=".MapsActivity" />
+        tools:context=".MapsActivity"
+        tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/mapStartButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="427dp"
-        android:layout_marginBottom="256dp"
-        android:background="#64DD17"
-        android:onClick="startTripButtonClicked"
-        android:text="START"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <Button-->
+    <!--        android:id="@+id/mapStartButton"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="427dp"-->
+    <!--        android:layout_marginBottom="256dp"-->
+    <!--        android:background="#64DD17"-->
+    <!--        android:onClick="startTripButtonClicked"-->
+    <!--        android:text="START"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:visibility="gone" />-->
 
-    <Button
-        android:id="@+id/mapStopButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="427dp"
-        android:layout_marginBottom="256dp"
-        android:background="#D50000"
-        android:onClick="stopTripButtonClicked"
-        android:text="STOP"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <Button-->
+    <!--        android:id="@+id/mapStopButton"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="427dp"-->
+    <!--        android:layout_marginBottom="256dp"-->
+    <!--        android:background="#D50000"-->
+    <!--        android:onClick="stopTripButtonClicked"-->
+    <!--        android:text="STOP"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:visibility="gone" />-->
 
     <TextView
         android:id="@+id/mapStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="154dp"
-        android:text="Status: "
         android:gravity="center_vertical"
+        android:text="Status: "
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapCompass"
         app:layout_constraintTop_toBottomOf="@+id/map" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -93,11 +91,9 @@
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapLng"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapStatus" />
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapHeading"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapLng"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/tV_mapLng"
@@ -108,41 +104,35 @@
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapCompass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tV_mapLat" />
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapLat"
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass"
+        tools:layout_editor_absoluteX="27dp" />
 
     <TextView
         android:id="@+id/tV_mapCompass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
         android:text="Compass Value:"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_mapHeading"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tV_mapLng" />
+        app:layout_constraintBottom_toTopOf="@+id/tV_mapLng"
+        app:layout_constraintTop_toBottomOf="@+id/mapStatus"
+        tools:layout_editor_absoluteX="27dp" />
 
     <TextView
         android:id="@+id/tV_mapHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="77dp"
         android:text="Heading:"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass" />
+        app:layout_constraintTop_toBottomOf="@+id/tV_mapLat"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
