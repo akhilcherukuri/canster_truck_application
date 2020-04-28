@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(mReceiver, filter);
 
         bluetoothStart();
-        listViewPaired.setAdapter(null);
-        pairedDevicesArrayAdapter.clear();
-        doBluetoothDiscovery();
-        statusBluetooth.setText("BLUETOOTH DISCOVERY");
+//        listViewPaired.setAdapter(null);
+//        pairedDevicesArrayAdapter.clear();
+//        doBluetoothDiscovery();
+//        statusBluetooth.setText("BLUETOOTH DISCOVERY");
     }
 
     public void onOffButtonClicked(View view) {
