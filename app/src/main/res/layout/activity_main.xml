@@ -56,6 +56,8 @@
             android:layout_height="101dp"
             android:layout_marginTop="28dp"
             android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/searchButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

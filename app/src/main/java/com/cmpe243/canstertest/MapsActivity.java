@@ -52,7 +52,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     //==============================BLUETOOTH==============================
 
     //==============================OUTPUT==============================
-    TextView tVLat, tVLng, tVCompass, tVHeading, tVBattery, tVUltrasonic;
+//    TextView tVLat, tVLng, tVCompass, tVHeading, tVBattery, tVUltrasonic;
+      TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections;
     //==============================OUTPUT==============================
 
     //==============================MAPS==============================
@@ -79,16 +80,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //startTrip = (Button) findViewById(R.id.mapStartButton);
         //endTrip = (Button) findViewById(R.id.mapStopButton);
         statusMap=(TextView)findViewById(R.id.mapStatus);
-        tVLat=(TextView)findViewById(R.id.tV_mapLat);
-        tVLng=(TextView)findViewById(R.id.tV_mapLng);
-        tVCompass=(TextView)findViewById(R.id.tV_mapCompass);
-        tVHeading=(TextView)findViewById(R.id.tV_mapHeading);
-        tVBattery=(TextView)findViewById(R.id.tV_Battery);
-        tVUltrasonic=(TextView)findViewById(R.id.tV_ultrasonic);
+//        tVLat=(TextView)findViewById(R.id.tV_mapLat);
+//        tVLng=(TextView)findViewById(R.id.tV_mapLng);
+//        tVCompass=(TextView)findViewById(R.id.tV_mapCompass);
+//        tVHeading=(TextView)findViewById(R.id.tV_mapHeading);
+//        tVBattery=(TextView)findViewById(R.id.tV_Battery);
+//        tVUltrasonic=(TextView)findViewById(R.id.tV_ultrasonic);
+          tVCLat=(TextView)findViewById(R.id.tV_cLat);
+          tVCLng=(TextView)findViewById(R.id.tV_cLng);
+          tVDLat=(TextView)findViewById(R.id.tV_dLat);
+          tVDLng=(TextView)findViewById(R.id.tV_dLng);
+          tVCmpsCurrent=(TextView)findViewById(R.id.tV_CompassCurrent);
+          tVCmpsRequired=(TextView)findViewById(R.id.tV_CompassRequired);
+          tVSpeed=(TextView)findViewById(R.id.tV_speed);
+          tVSteerDirections=(TextView)findViewById(R.id.tV_steeringDirection);
+          tVUL=(TextView)findViewById(R.id.tV_ultraLeft);
+          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle);
+          tVUR=(TextView)findViewById(R.id.tV_ultraRight);
         //==============================findViewByID==============================
 
         //==============================MAPS==============================
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         //==============================MAPS==============================
@@ -274,7 +286,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void parseMessage(String readMessage) {
         //appendMessages.append("RX: \t" + readMessage + "\n");
-        String incomingMessage = readMessage;
+//        String incomingMessage = readMessage;
 //        String preFix = "$canster,";
 //        String noPreFix = incomingMessage.substring(incomingMessage.indexOf(preFix)+ preFix.length());
 //        String[] tokens = noPreFix.split(",");
@@ -282,22 +294,75 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        tVLng.setText("Longitude:\t" + tokens[2].toString());
 //        tVCompass.setText("Compass Heading:\t" + tokens[3].toString());
 //        tVHeading.setText("Battery:\t" + tokens[4].toString());
-        StringTokenizer tokenizer = new StringTokenizer(incomingMessage, ",");
+        StringTokenizer tokenizer = new StringTokenizer(readMessage, ",");
         String dirIgnore = tokenizer.nextToken();
-        String dirLat = tokenizer.nextToken();
-        String dirLng = tokenizer.nextToken();
-        String dirCompass = tokenizer.nextToken();
+        String dirCLat = tokenizer.nextToken();
+        String dirCLng = tokenizer.nextToken();
+        String dirDLat = tokenizer.nextToken();
+        String dirDLng = tokenizer.nextToken();
+        String dirUL = tokenizer.nextToken();
+        String dirUM = tokenizer.nextToken();
+        String dirUR= tokenizer.nextToken();
         String dirSpeed = tokenizer.nextToken();
-        String dirBattery = tokenizer.nextToken();
-        String dirUltrasonicL = tokenizer.nextToken();
-        String dirUltrasonicM = tokenizer.nextToken();
-        String dirUltrasonicR = tokenizer.nextToken();
-        tVLat.setText("Latitude:\t" + dirLat);
-        tVLng.setText("Longitude:\t" + dirLng);
-        tVCompass.setText("Compass Heading:\t" + dirCompass);
-        tVHeading.setText("Speed:\t" + dirSpeed);
-        tVBattery.setText("Battery:\t" + dirBattery);
-        tVUltrasonic.setText("L:\t" + dirUltrasonicL + "\t" + "M:\t" + dirUltrasonicM + "\t" + "R:\t" + dirUltrasonicR);
+        String dirCCompass = tokenizer.nextToken();
+        String dirRCompass = tokenizer.nextToken();
+        String dirSteerHeading = tokenizer.nextToken();
+        tVUL.setText("Left: " + dirUL +" cm");
+        tVUM.setText("Middle: " + dirUM + " cm");
+        tVUR.setText("Right: " + dirUR + " cm");
+        tVCLat.setText("Current Latitude:\t" + dirCLat +"°");
+        tVCLng.setText("Current Longitude:\t" + dirCLng +"°");
+        tVDLat.setText("Destination Latitude:\t" + dirDLat +"°");
+        tVDLng.setText("Destination Longitude:\t" + dirDLng +"°");
+        tVCmpsCurrent.setText("Current Compass Heading:\t" + dirCCompass +"°");
+        tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass +"°");
+        tVSpeed.setText("Speed:\t" + dirSpeed +" kph");
+//        if(dirSteerHeading.equals("-2")){
+//            tVSteerDirections.setText("Steering Directions: Hard Left");
+//        }
+//        else if (dirSteerHeading.equals("-1")){
+//            tVSteerDirections.setText("Steering Directions: Slightly Left");
+//        }
+//        else if (dirSteerHeading.equals("0")){
+//            tVSteerDirections.setText("Steering Directions: Straight");
+//        }
+//        else if (dirSteerHeading.equals("1")){
+//            tVSteerDirections.setText("Steering Directions: Slightly Right");
+//        }
+//        else if (dirSteerHeading.equals("2")){
+//            tVSteerDirections.setText("Steering Directions: Hard Right");
+//        }
+//
+//
+//
+//        switch (dirSteerHeading) {
+//            case "-2":
+//                tVSteerDirections.setText("Steering Directions: Hard Left");
+//            case "-1":
+//                tVSteerDirections.setText("Steering Directions: Slightly Left");
+//            case "0":
+//                tVSteerDirections.setText("Steering Directions: Straight");
+//            case "1":
+//                tVSteerDirections.setText("Steering Directions: Slighty Right");
+//            case "2":
+//                tVSteerDirections.setText("Steering Directions: Hard Right");
+//        }
+
+        tVSteerDirections.setText("Steering Direction:\t" + dirSteerHeading);
+//        String dirLat = tokenizer.nextToken();
+//        String dirLng = tokenizer.nextToken();
+//        String dirCompass = tokenizer.nextToken();
+//        String dirSpeed = tokenizer.nextToken();
+//        String dirBattery = tokenizer.nextToken();
+//        String dirUltrasonicL = tokenizer.nextToken();
+//        String dirUltrasonicM = tokenizer.nextToken();
+//        String dirUltrasonicR = tokenizer.nextToken();
+//        tVLat.setText("Latitude:\t" + dirLat);
+//        tVLng.setText("Longitude:\t" + dirLng);
+//        tVCompass.setText("Compass Heading:\t" + dirCompass);
+//        tVHeading.setText("Speed:\t" + dirSpeed);
+//        tVBattery.setText("Battery:\t" + dirBattery);
+//        tVUltrasonic.setText("L:\t" + dirUltrasonicL + "\t" + "M:\t" + dirUltrasonicM + "\t" + "R:\t" + dirUltrasonicR);
     }
 /*==================================================================================================================================
     userToast is used to Log messages to show in status textView,
