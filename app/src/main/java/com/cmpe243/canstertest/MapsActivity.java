@@ -52,7 +52,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     //==============================BLUETOOTH==============================
 
     //==============================OUTPUT==============================
-    TextView tVLat, tVLng, tVCompass, tVHeading, tVBattery;
+    TextView tVLat, tVLng, tVCompass, tVHeading, tVBattery, tVUltrasonic;
     //==============================OUTPUT==============================
 
     //==============================MAPS==============================
@@ -84,6 +84,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         tVCompass=(TextView)findViewById(R.id.tV_mapCompass);
         tVHeading=(TextView)findViewById(R.id.tV_mapHeading);
         tVBattery=(TextView)findViewById(R.id.tV_Battery);
+        tVUltrasonic=(TextView)findViewById(R.id.tV_ultrasonic);
         //==============================findViewByID==============================
 
         //==============================MAPS==============================
@@ -288,11 +289,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String dirCompass = tokenizer.nextToken();
         String dirSpeed = tokenizer.nextToken();
         String dirBattery = tokenizer.nextToken();
+        String dirUltrasonicL = tokenizer.nextToken();
+        String dirUltrasonicM = tokenizer.nextToken();
+        String dirUltrasonicR = tokenizer.nextToken();
         tVLat.setText("Latitude:\t" + dirLat);
         tVLng.setText("Longitude:\t" + dirLng);
         tVCompass.setText("Compass Heading:\t" + dirCompass);
         tVHeading.setText("Speed:\t" + dirSpeed);
         tVBattery.setText("Battery:\t" + dirBattery);
+        tVUltrasonic.setText("L:\t" + dirUltrasonicL + "\t" + "M:\t" + dirUltrasonicM + "\t" + "R:\t" + dirUltrasonicR);
     }
 /*==================================================================================================================================
     userToast is used to Log messages to show in status textView,

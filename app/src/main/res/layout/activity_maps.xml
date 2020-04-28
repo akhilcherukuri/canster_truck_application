@@ -131,6 +131,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tV_Battery"
         app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass"
+        app:layout_constraintVertical_bias="0.691"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
@@ -142,9 +143,22 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintBottom_toTopOf="@+id/tV_ultrasonic"
         app:layout_constraintTop_toBottomOf="@+id/tV_mapHeading"
         tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tV_ultrasonic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ultrasonic values"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintTop_toBottomOf="@+id/tV_Battery"
+        tools:layout_editor_absoluteX="60dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
