@@ -24,12 +24,12 @@ mHandler.sendMessage();</code></pre>
 
 Input string:
 
-<pre><code>$canster,lat,lng,compass heading,speed,battery\n
+<pre><code>$canster,currentLat,currentLng,destinationLat,destinationLng,ultrasonicLeft,ultrasonicMiddle,ultrasonicRight,speed(kph),currentCompassHeading,requiredCompassHeading,steeringDirection,distanceTillDestination\n
 
-Example: $canster,37.339312,-121.881111,180.77,7,5\n
+Example: $canster,111.222222,333.444444,555.666666,777.888888,10.123,20.133,30.123,10.5,88.1,99.2,44,-2,1\n
+
 </code></pre>
 
-string needs to end with new line character to prase the message.
-
+string needs to end with new line character to prase the message, we can either use string split or legacy string tokenizer
 
 
