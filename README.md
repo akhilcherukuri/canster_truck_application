@@ -11,8 +11,7 @@ As of now, the application consists of:
 - Once Device is clicked, a intent will start the Debug Activity // Later stages it will directly start the Maps Activity.
 
 2. Debug Activity:
-- Main Function of this activity is to checked all RX and TX Messages
-- For the Demo: Predefined Transmit Buttons [START], [STOP], Textbox[ENTER]
+- Function of this activity is to checked all RX and TX Messages
 
 3. Bluetooth Connection Service :
 - Has 3 Running Threads (Accept, Connect, Connected).
@@ -21,6 +20,10 @@ As of now, the application consists of:
 - Connected Thread - Creates <pre><code>socket.getInputStream();</code></pre> and <pre><code>socket.getOutputStream();</code></pre> when bytes are available in inputstream it will read them into a buffer.
 - All messages for activities are done by Handler <pre><code>mHandler.obtainMessage();
 mHandler.sendMessage();</code></pre>
+
+4. Maps Activity:
+- Function is this activty is to display google maps in which one can select destination checkpoint.
+- Start and Stop Functions
 
 Input string:
 
