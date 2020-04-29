@@ -192,8 +192,9 @@
         android:layout_height="45dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/tV_cLat"
-        app:layout_constraintTop_toBottomOf="@+id/mapStatus"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapStatus">
 
         <TextView
             android:id="@+id/textView13"
