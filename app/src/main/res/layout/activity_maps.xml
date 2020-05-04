@@ -90,7 +90,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/mapStatus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
@@ -192,9 +192,8 @@
         android:layout_height="45dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/tV_cLat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapStatus">
+        app:layout_constraintTop_toBottomOf="@+id/mapStatus"
+        tools:layout_editor_absoluteX="2dp">
 
         <TextView
             android:id="@+id/textView13"

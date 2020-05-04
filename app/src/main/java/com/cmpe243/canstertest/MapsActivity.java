@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -12,12 +14,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,6 +30,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.StringTokenizer;
@@ -56,11 +62,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //==============================MAPS==============================
     private GoogleMap mMap;
-    private Marker currentLocation, destinationLocation;
+    public Marker currentLocationMarker, destinationLocationMarker;
     private double destinationLat = 0.0, destinationLng = 0.0;
     LatLng cansterCurrent, cansterDestination;
     Button startTrip, endTrip;
     TextView statusMap;
+    String dirCLat ="0.0" , dirCLng ="0.0";
+    locationThread locationThread;
+    Polyline polyline;
+    boolean isCurrentSet = false;
     //==============================MAPS==============================
 
     @Override
@@ -126,9 +136,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
                         bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
                         Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
-                        String message2 = "$START" +","+ destinationLat +","+ destinationLng +"\r\n";
+                        String message2 = "$loc" +","+ destinationLat +","+ destinationLng +"\r\n";
                         userToast("Status: ","START message sent",false);
                         sendMessage(message2);
+                            polyline = mMap.addPolyline(new PolylineOptions()
+                                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
+                                .width(8)
+                                .color(Color.GREEN));
+                        locationThread = new locationThread();
+                        locationThread.start();
                         break;
                 }
                 return true;
@@ -149,10 +165,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         // Add a marker in SJSU 10th Street and move the camera
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        LatLng SJSU = new LatLng(37.339312, -121.881111);
-        mMap.addMarker(new MarkerOptions().position(SJSU).title("Canster Truck").icon(BitmapDescriptorFactory.fromResource(R.drawable.car)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(SJSU));
-        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(SJSU.latitude,SJSU.longitude),17.0f ));
+        LatLng cansterCurrentLocation = new LatLng(37.339312, -121.881111);
+        MarkerOptions a = new MarkerOptions().position(cansterCurrentLocation).title("Canster Truck").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        //currentLocationMarker = mMap.addMarker(a);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cansterCurrentLocation));
+        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -175,17 +192,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
     }
-
-//    public void startTripButtonClicked(View view) {
-//        String message = "$START" +","+ destinationLat +","+ destinationLng +"\r\n";
-//        userToast("Status: ","START message sent",false);
-//        sendMessage(message);
-//    }
-//    public void stopTripButtonClicked(View view) {
-//        String message = "$STOP\r\n";
-//        userToast("Status: ","STOP message sent",false);
-//        sendMessage(message);
-//    }
 
     private void connectDevice(boolean secure) {
 
@@ -278,8 +284,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void parseMessage(String readMessage) {
         StringTokenizer tokenizer = new StringTokenizer(readMessage, ",");
         String dirIgnore = tokenizer.nextToken();
-        String dirCLat = tokenizer.nextToken();
-        String dirCLng = tokenizer.nextToken();
+        dirCLat = tokenizer.nextToken();
+        dirCLng = tokenizer.nextToken();
         String dirDLat = tokenizer.nextToken();
         String dirDLng = tokenizer.nextToken();
         String dirUL = tokenizer.nextToken();
@@ -305,6 +311,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
             if (dirReached.equals("1\n")) {
                 statusMap.setText("Status: Destination Reached");
+                manageBlinkEffect();
             } else {
                 statusMap.setText("Status: Going to Destination");
             }
@@ -352,5 +359,51 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //mBluetoothAdapter.disable();
         finish();
     }
+    public void manageBlinkEffect() {
+        ObjectAnimator anim = ObjectAnimator.ofInt(statusMap,"backgroundColor",Color.BLACK,Color.RED,Color.BLACK);
+        anim.setDuration(800);
+        anim.setEvaluator(new ArgbEvaluator());
+//        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(10);
+        anim.start();
+    }
 
+    class locationThread extends Thread {
+        @Override
+        public void run() {
+            try {
+                while(!Thread.currentThread().isInterrupted()) {
+                    sleep(1000);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(isCurrentSet)
+                            {
+                                currentLocationMarker.remove();
+                                polyline.remove();
+                            }
+                            else
+                                isCurrentSet = true;
+                                polyline.remove();
+                            LatLng currentLocation = new LatLng(Double.parseDouble(dirCLat) , Double.parseDouble(dirCLng));
+                            currentLocationMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).title("CANSTER TRUCK").icon(BitmapDescriptorFactory
+                                    .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                            //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentPos));
+                            //mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                            polyline = mMap.addPolyline(new PolylineOptions()
+                                    .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
+                                    .width(8)
+                                    .color(Color.RED));
+                        }
+                    });
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        public void cancel() {
+            interrupt();
+        }
+    };
 }
