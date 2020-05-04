@@ -136,7 +136,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
                         bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
                         Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
-                        String message2 = "$loc" +","+ destinationLat +","+ destinationLng +"\r\n";
+                        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
                         userToast("Status: ","START message sent",false);
                         sendMessage(message2);
                             polyline = mMap.addPolyline(new PolylineOptions()
@@ -176,7 +176,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onMapClick(LatLng latLng) {
                 destinationLat = latLng.latitude; destinationLng = latLng.longitude;
                 cansterDestination = new LatLng(destinationLat,destinationLng);
-                mMap.addMarker(new MarkerOptions().position(cansterDestination).title("Destination").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                MarkerOptions dest = new MarkerOptions().position(cansterDestination).title("Destination").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                destinationLocationMarker = mMap.addMarker(dest);
                 userToast("Destination Marker:",cansterDestination.toString(),false);
             }
         });
@@ -388,13 +389,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             LatLng currentLocation = new LatLng(Double.parseDouble(dirCLat) , Double.parseDouble(dirCLng));
                             currentLocationMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).title("CANSTER TRUCK").icon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                            //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentPos));
-                            //mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
                             mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
                             polyline = mMap.addPolyline(new PolylineOptions()
                                     .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
                                     .width(8)
-                                    .color(Color.RED));
+                                    .color(Color.GREEN));
                         }
                     });
                 }
