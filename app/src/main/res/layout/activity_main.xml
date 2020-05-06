@@ -74,12 +74,12 @@
             android:text="SEARCH"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/statusBluetooth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/onOffButton"
             app:layout_constraintTop_toBottomOf="@+id/listViewPaired"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/onOffButton"
@@ -91,13 +91,13 @@
             android:text="ON/OFF"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/statusBluetooth"
             app:layout_constraintEnd_toStartOf="@+id/searchButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listViewPaired"
             app:layout_constraintVertical_bias="1.0"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/statusBluetooth"

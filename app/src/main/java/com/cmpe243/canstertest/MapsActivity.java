@@ -56,7 +56,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     //==============================BLUETOOTH==============================
 
     //==============================OUTPUT==============================
-//    TextView tVLat, tVLng, tVCompass, tVHeading, tVBattery, tVUltrasonic;
       TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections, tVDistance;
     //==============================OUTPUT==============================
 
@@ -64,13 +63,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     public Marker currentLocationMarker, destinationLocationMarker;
     private double destinationLat = 0.0, destinationLng = 0.0;
-    LatLng cansterCurrent, cansterDestination;
-    Button startTrip, endTrip;
+    LatLng cansterDestination;
     TextView statusMap;
     String dirCLat ="0.0" , dirCLng ="0.0";
     locationThread locationThread;
     Polyline polyline;
     boolean isCurrentSet = false;
+    boolean mapVisible = false;
     //==============================MAPS==============================
 
     @Override
@@ -85,8 +84,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //==============================BLUETOOTH==============================
 
         //==============================findViewById==============================
-        //startTrip = (Button) findViewById(R.id.mapStartButton);
-        //endTrip = (Button) findViewById(R.id.mapStopButton);
         statusMap=(TextView)findViewById(R.id.mapStatus);
           tVCLat=(TextView)findViewById(R.id.tV_cLat);
           tVCLng=(TextView)findViewById(R.id.tV_cLng);
@@ -115,12 +112,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_debug:
-//                        Intent openActivity2 = new Intent(MapsActivity.this, DebugActivity.class);
-//                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
-//                        Intent intent = getIntent();
-//                        mConnectedDeviceAddress = intent.getStringExtra(MapsActivity.EXTRA_ADDRESS);
-//                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
-//                        startActivity(openActivity2);
                         bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.RED));
                         bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
                         Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
@@ -128,11 +119,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         userToast("Status: ","STOP message sent",false);
                         sendMessage(message1);
                     case R.id.navigation_maps:
-                        //Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.navigation_bluetooth:
+//                        Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
 //                        mChatService.stop();
 //                        setupChat();
+                        break;
+                    case R.id.navigation_bluetooth:
                         bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
                         bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
                         Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
@@ -358,6 +349,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         mBluetoothAdapter.cancelDiscovery();
         //mBluetoothAdapter.disable();
+        locationThread.cancel();
         finish();
     }
     public void manageBlinkEffect() {
