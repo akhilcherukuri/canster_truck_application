@@ -122,6 +122,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                        Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
 //                        mChatService.stop();
 //                        setupChat();
+                        if (mChatService != null) {
+                            mChatService.stop();
+                        }
+                        mBluetoothAdapter.cancelDiscovery();
+                        Intent openActivity3 = new Intent(MapsActivity.this, DebugActivity.class);
+                        openActivity3.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+                        startActivityForResult(openActivity3,1);
                         break;
                     case R.id.navigation_bluetooth:
                         bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
