@@ -122,7 +122,7 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="229dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/mapStatus"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,11 +130,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context=".MapsActivity" />
+        tools:context=".MapsActivity"></androidx.fragment.app.FragmentContainerView>
 
     <TextView
         android:id="@+id/mapStatus"
-        android:layout_width="match_parent"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:text="Status: "
@@ -278,6 +278,7 @@
         android:id="@+id/tvDistance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Distance till Destination:"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
@@ -286,6 +287,42 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
         app:layout_constraintTop_toBottomOf="@+id/tV_steeringDirection"
         tools:layout_editor_absoluteX="142dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="169dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="9dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map">
+
+        <Button
+            android:id="@+id/Map_Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00C853"
+            android:onClick="mapStart"
+            android:text="START"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="88dp"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="318dp" />
+
+        <Button
+            android:id="@+id/Map_Stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#D50000"
+            android:onClick="mapStop"
+            android:text="STOP"
+            tools:layout_conversion_absoluteHeight="48dp"
+            tools:layout_conversion_absoluteWidth="88dp"
+            tools:layout_editor_absoluteX="178dp"
+            tools:layout_editor_absoluteY="318dp" />
+    </LinearLayout>
 
     <!--    <TextView-->
     <!--        android:id="@+id/tV_mapLat"-->

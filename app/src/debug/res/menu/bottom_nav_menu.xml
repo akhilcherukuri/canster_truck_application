@@ -4,10 +4,10 @@
 
     <item
         android:id="@+id/navigation_bluetooth"
-        android:icon="@drawable/ic_play_arrow_black_24dp"
+        android:icon="@drawable/ic_bluetooth_black_24dp"
         app:itemIconTint="@android:color/holo_green_light"
         app:itemTextColor="@android:color/holo_green_light"
-        android:title="Start" />
+        android:title="Bluetooth" />
 
     <item
         android:id="@+id/navigation_maps"
@@ -19,9 +19,9 @@
 
     <item
         android:id="@+id/navigation_debug"
-        android:icon="@drawable/ic_stop_black_24dp"
+        android:icon="@drawable/ic_info_outline_black_24dp"
         app:itemIconTint="@android:color/holo_red_light"
         app:itemTextColor="@android:color/holo_red_light"
-        android:title="Stop" />
+        android:title="Debug" />
 
 </menu>

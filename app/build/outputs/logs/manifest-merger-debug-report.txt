@@ -151,26 +151,30 @@ MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/akhilc
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:38:13-66
 	android:name
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:37:13-58
-activity#com.cmpe243.canstertest.MapsActivity
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:41:9-43:48
-	android:label
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:43:13-45
-	android:name
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:42:13-41
 activity#com.cmpe243.canstertest.MainActivity
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:44:9-50:20
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:40:9-46:20
 	android:name
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:44:19-47
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:40:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:45:13-49:29
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:41:13-45:29
 action#android.intent.action.MAIN
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:46:17-69
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:42:17-69
 	android:name
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:46:25-66
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:42:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:48:17-77
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:44:17-77
 	android:name
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:48:27-74
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:44:27-74
+activity#com.cmpe243.canstertest.MapsActivity
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:47:9-49:48
+	android:label
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:49:13-45
+	android:name
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:48:13-41
+activity#com.cmpe243.canstertest.SplashActivity
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:50:9-52
+	android:name
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:50:19-49
 activity#com.cmpe243.canstertest.DebugActivity
 ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:51:9-52:48
 	android:label

@@ -67,19 +67,24 @@ public class DebugActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-//                    case R.id.navigation_maps:
-//                        //onDestroy();
-//                        Intent openActivity3 = new Intent(DebugActivity.this, MapsActivity.class);
-//                        openActivity3.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
-//                        startActivity(openActivity3);
-//                        break;
+                    case R.id.navigation_maps:
+                        if (mChatService != null) {
+                            mChatService.stop();
+                        }
+                        mBluetoothAdapter.cancelDiscovery();
+                        Intent openActivity3 = new Intent(DebugActivity.this, MapsActivity.class);
+                        openActivity3.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+                        startActivityForResult(openActivity3,1);
+                        break;
                     case R.id.navigation_debug:
                         Toast.makeText(DebugActivity.this, "Already On Debug", Toast.LENGTH_SHORT).show();
                         break;
-//                    case R.id.navigation_bluetooth:
-//                        mChatService.stop();
-//                        setupChat();
-//                        break;
+                    case R.id.navigation_bluetooth:
+                        Toast.makeText(DebugActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
+                        mChatService.stop();
+                        setupChat();
+                        break;
+
                 }
                 return true;
             }

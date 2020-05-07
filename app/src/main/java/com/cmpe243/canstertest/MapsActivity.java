@@ -1,6 +1,7 @@
 package com.cmpe243.canstertest;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
@@ -57,6 +58,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //==============================OUTPUT==============================
       TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections, tVDistance;
+      Button mapStart, mapStop;
     //==============================OUTPUT==============================
 
     //==============================MAPS==============================
@@ -97,6 +99,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
           tVUM=(TextView)findViewById(R.id.tV_ultraMiddle);
           tVUR=(TextView)findViewById(R.id.tV_ultraRight);
           tVDistance=(TextView)findViewById(R.id.tvDistance);
+          mapStart=(Button)findViewById(R.id.Map_Start);
+          mapStop=(Button)findViewById(R.id.Map_Stop);
         //==============================findViewByID==============================
 
         //==============================MAPS==============================
@@ -112,16 +116,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_debug:
-                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.RED));
-                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
-                        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
-                        String message1 = "$STOP\r\n";
-                        userToast("Status: ","STOP message sent",false);
-                        sendMessage(message1);
-                    case R.id.navigation_maps:
-//                        Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
-//                        mChatService.stop();
-//                        setupChat();
+//                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.RED));
+//                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
+//                        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
+//                        String message1 = "$STOP\r\n";
+//                        userToast("Status: ","STOP message sent",false);
+//                        sendMessage(message1);
                         if (mChatService != null) {
                             mChatService.stop();
                         }
@@ -130,19 +130,25 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         openActivity3.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
                         startActivityForResult(openActivity3,1);
                         break;
+                    case R.id.navigation_maps:
+                        Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.navigation_bluetooth:
-                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
-                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
-                        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
-                        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
-                        userToast("Status: ","START message sent",false);
-                        sendMessage(message2);
-                            polyline = mMap.addPolyline(new PolylineOptions()
-                                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
-                                .width(8)
-                                .color(Color.GREEN));
-                        locationThread = new locationThread();
-                        locationThread.start();
+//                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
+//                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
+//                        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
+//                        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
+//                        userToast("Status: ","START message sent",false);
+//                        sendMessage(message2);
+//                            polyline = mMap.addPolyline(new PolylineOptions()
+//                                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
+//                                .width(8)
+//                                .color(Color.GREEN));
+//                        locationThread = new locationThread();
+//                        locationThread.start();
+                        Toast.makeText(MapsActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
+                        mChatService.stop();
+                        setupChat();
                         break;
                 }
                 return true;
@@ -172,11 +178,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+                if(destinationLocationMarker != null) {
+                    destinationLocationMarker.remove();
+                //destinationLat = 0.0; destinationLng =0.0;
+                }
                 destinationLat = latLng.latitude; destinationLng = latLng.longitude;
                 cansterDestination = new LatLng(destinationLat,destinationLng);
-                MarkerOptions dest = new MarkerOptions().position(cansterDestination).title("Destination").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                MarkerOptions dest = new MarkerOptions().position(cansterDestination).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 destinationLocationMarker = mMap.addMarker(dest);
-                userToast("Destination Marker:",cansterDestination.toString(),false);
+                String infoMap = + Math.floor(destinationLat*100000)/100000 + "," + Math.floor(destinationLng*100000)/100000;
+                destinationLocationMarker.setTitle(infoMap);
+                destinationLocationMarker.showInfoWindow();
+                userToast("Destination Marker:","Added",false);
             }
         });
 
@@ -190,6 +203,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+    }
+
+    public void mapStart (View view) {
+        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
+        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
+        userToast("Status: ","START message sent",false);
+        sendMessage(message2);
+        polyline = mMap.addPolyline(new PolylineOptions()
+                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
+                .width(8)
+                .color(Color.GREEN));
+        locationThread = new locationThread();
+        locationThread.start();
+    }
+
+    public void mapStop (View view) {
+        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
+        String message1 = "$STOP\r\n";
+        userToast("Status: ","STOP message sent",false);
+        sendMessage(message1);
     }
 
     private void connectDevice(boolean secure) {
@@ -259,7 +292,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         for (int i = 0; i < readBuf.length; i++) {
                             byte rx_char = readBuf[i];
                             if (rx_char == ENDLINE) {
-                                inputPacketString += Character.toString((char) rx_char);
+                                //inputPacketString += Character.toString((char) rx_char);
                                 parseMessage(inputPacketString);
                                 inputPacketString = "";
                             } else {
@@ -293,9 +326,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String dirSpeed = tokenizer.nextToken();
         String dirCCompass = tokenizer.nextToken();
         String dirRCompass = tokenizer.nextToken();
-        String dirDistance = tokenizer.nextToken();
         String dirSteerHeading = tokenizer.nextToken();
         String dirReached = tokenizer.nextToken();
+        String dirDistance = tokenizer.nextToken();
         if (dirIgnore.endsWith("canster")) {
             tVUL.setText("Left: " + dirUL + " cm");
             tVUM.setText("Middle: " + dirUM + " cm");
@@ -308,7 +341,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
             tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
-            if (dirReached.equals("1\n")) {
+            if (dirReached.equals("1")) {
                 statusMap.setText("Status: Destination Reached");
                 manageBlinkEffect();
             } else {
