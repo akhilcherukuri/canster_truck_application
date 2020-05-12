@@ -57,7 +57,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     //==============================BLUETOOTH==============================
 
     //==============================OUTPUT==============================
-      TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections, tVDistance;
+      TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections, tVDistance, tVBattery;
       Button mapStart, mapStop;
     //==============================OUTPUT==============================
 
@@ -65,6 +65,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     public Marker currentLocationMarker, destinationLocationMarker;
     private double destinationLat = 0.0, destinationLng = 0.0;
+    private double currentLat = 0.0, currentLng = 0.0;
     LatLng cansterDestination;
     TextView statusMap;
     String dirCLat ="0.0" , dirCLng ="0.0";
@@ -99,6 +100,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
           tVUM=(TextView)findViewById(R.id.tV_ultraMiddle);
           tVUR=(TextView)findViewById(R.id.tV_ultraRight);
           tVDistance=(TextView)findViewById(R.id.tvDistance);
+          tVBattery=(TextView)findViewById(R.id.tV_Battery);
           mapStart=(Button)findViewById(R.id.Map_Start);
           mapStop=(Button)findViewById(R.id.Map_Stop);
         //==============================findViewByID==============================
@@ -329,6 +331,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String dirSteerHeading = tokenizer.nextToken();
         String dirReached = tokenizer.nextToken();
         String dirDistance = tokenizer.nextToken();
+        String dirBattery = tokenizer.nextToken();
         if (dirIgnore.endsWith("canster")) {
             tVUL.setText("Left: " + dirUL + " cm");
             tVUM.setText("Middle: " + dirUM + " cm");
@@ -341,6 +344,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
             tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
+            tVBattery.setText("Battery:\t" + dirBattery + " ");
             if (dirReached.equals("1")) {
                 statusMap.setText("Status: Destination Reached");
                 manageBlinkEffect();
@@ -419,8 +423,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 isCurrentSet = true;
                                 polyline.remove();
                             LatLng currentLocation = new LatLng(Double.parseDouble(dirCLat) , Double.parseDouble(dirCLng));
-                            currentLocationMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).title("CANSTER TRUCK").icon(BitmapDescriptorFactory
+                            currentLocationMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).icon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                            String infoMap2 = + Math.floor(Double.parseDouble(dirCLat)*100000)/100000 + "," + Math.floor(Double.parseDouble(dirCLng)*100000)/100000;
+                            currentLocationMarker.setTitle(infoMap2);
+                            currentLocationMarker.showInfoWindow();
                             mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
                             polyline = mMap.addPolyline(new PolylineOptions()
                                     .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))

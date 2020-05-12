@@ -278,13 +278,12 @@
         android:id="@+id/tvDistance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:text="Distance till Destination:"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintBottom_toTopOf="@+id/tV_Battery"
         app:layout_constraintTop_toBottomOf="@+id/tV_steeringDirection"
         tools:layout_editor_absoluteX="142dp" />
 
@@ -323,6 +322,20 @@
             tools:layout_editor_absoluteX="178dp"
             tools:layout_editor_absoluteY="318dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tV_Battery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Batery:"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
+        app:layout_constraintTop_toBottomOf="@+id/tvDistance"
+        tools:layout_editor_absoluteX="142dp" />
 
     <!--    <TextView-->
     <!--        android:id="@+id/tV_mapLat"-->
