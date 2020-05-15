@@ -35,6 +35,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 
@@ -73,6 +74,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Polyline polyline;
     boolean isCurrentSet = false;
     boolean mapVisible = false;
+    ArrayList<LatLng> waypointsArray = new ArrayList<LatLng>();
     //==============================MAPS==============================
 
     @Override
@@ -158,6 +160,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
         //==============================BOTTOMNAVBAR==============================
 
+        waypointsCreate();
+
         //==============================TOPTOOLBAR==============================
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(myToolbar);
@@ -176,6 +180,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //currentLocationMarker = mMap.addMarker(a);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cansterCurrentLocation));
         mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
+
+        for(int i = 0 ; i < waypointsArray.size() ; i++) {
+            mMap.addMarker(new MarkerOptions().position(waypointsArray.get(i)).title(String.valueOf(i+1)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))).showInfoWindow();
+        }
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -198,13 +206,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                marker.remove();
-                destinationLat = 0.0; destinationLng =0.0;
-                userToast("Destination Marker:","Removed",false);
+                if (marker == destinationLocationMarker){
+                    marker.remove();
+                    destinationLat = 0.0; destinationLng =0.0;
+                    userToast("Destination Marker:","Removed",false);
+                }
+                marker.showInfoWindow();
                 return true;
             }
         });
 
+    }
+    public void waypointsCreate() {
+        waypointsArray.add(new LatLng(37.33925,-121.88125)); //1
+        waypointsArray.add(new LatLng(37.33940,-121.88124)); //2
+        waypointsArray.add(new LatLng(37.33962,-121.88150)); //3
+        waypointsArray.add(new LatLng(37.33979,-121.88139)); //4
+        waypointsArray.add(new LatLng(37.33994,-121.88093)); //5
+        waypointsArray.add(new LatLng(37.33965,-121.88058)); //6
+        waypointsArray.add(new LatLng(37.33952,-121.88083)); //7
+        waypointsArray.add(new LatLng(37.33954,-121.88107)); //8
+        waypointsArray.add(new LatLng(37.33916,-121.88108)); //9
+        waypointsArray.add(new LatLng(37.33931,-121.88073)); //10
+        waypointsArray.add(new LatLng(37.33919,-121.88028)); //11
+        waypointsArray.add(new LatLng(37.33902,-121.88050)); //12
+        waypointsArray.add(new LatLng(37.33881,-121.88085)); //13
+        waypointsArray.add(new LatLng(37.33865,-121.88073)); //14
+        waypointsArray.add(new LatLng(37.33880,-121.88038)); //15
     }
 
     public void mapStart (View view) {
@@ -261,6 +289,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mChatService = new BluetoothChatService(this, mHandler);
         mOutStringBuffer = new StringBuffer("");
         connectDevice(false);
+    }
+
+    public void mapReset() {
+        mMap.clear();
+
     }
 /*==================================================================================================================================
     Handler allows you to send and process Message and Runnable objects associated with a thread's MessageQueue.
