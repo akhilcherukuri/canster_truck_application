@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
+INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
+INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
+INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-ui:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/6aeecca85dd981dd0e1d529276843c57/navigation-ui-2.2.1/AndroidManifest.xml:17:1-24:12
@@ -52,20 +52,20 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/akhilcherukuri/.gr
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a8c9207d9e235b09f38de3b9e6c8e8e0/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/d0451c97239df5be4dc66598fdd5c551/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/80a24a77b2345ebb709fc7815d75c401/print-1.0.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
+INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
+INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 	package
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:3:5-38
 		INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 		INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-64:12
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 		INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:11-69
@@ -98,7 +98,7 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcheru
 	android:name
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:15:22-64
 application
-ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:17:5-62:19
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:17:5-65:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
@@ -183,12 +183,18 @@ ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:58:13-45
 	android:name
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:57:13-41
-activity#com.cmpe243.canstertest.DebugActivity
+activity#com.cmpe243.canstertest.InfoActivity
 ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:60:9-61:48
 	android:label
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:61:13-45
 	android:name
-		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:60:19-48
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:60:19-47
+activity#com.cmpe243.canstertest.DebugActivity
+ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:63:9-64:48
+	android:label
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:64:13-45
+	android:name
+		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:63:19-48
 uses-sdk
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml

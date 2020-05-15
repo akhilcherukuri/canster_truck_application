@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/tV_speed"
+        android:id="@+id/tV_speed_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Speed:"
@@ -15,12 +15,12 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_steeringDirection"
-        app:layout_constraintTop_toBottomOf="@+id/tV_CompassRequired"
+        app:layout_constraintBottom_toTopOf="@+id/tV_steeringDirection_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_CompassRequired_info"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/tV_steeringDirection"
+        android:id="@+id/tV_steeringDirection_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Steering Direction:"
@@ -28,12 +28,12 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvDistance"
-        app:layout_constraintTop_toBottomOf="@+id/tV_speed"
+        app:layout_constraintBottom_toTopOf="@+id/tvDistance_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_speed_info"
         tools:layout_editor_absoluteX="-1dp" />
 
     <TextView
-        android:id="@+id/tV_CompassRequired"
+        android:id="@+id/tV_CompassRequired_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Compass Required"
@@ -41,12 +41,12 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_speed"
-        app:layout_constraintTop_toBottomOf="@+id/tV_CompassCurrent"
+        app:layout_constraintBottom_toTopOf="@+id/tV_speed_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_CompassCurrent_info"
         tools:layout_editor_absoluteX="-1dp" />
 
     <TextView
-        android:id="@+id/tV_cLat"
+        android:id="@+id/tV_cLat_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Current Lat"
@@ -54,12 +54,12 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_cLng"
+        app:layout_constraintBottom_toTopOf="@+id/tV_cLng_info"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/tV_cLng"
+        android:id="@+id/tV_cLng_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Current Lng"
@@ -67,13 +67,13 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_dLat"
-        app:layout_constraintTop_toBottomOf="@+id/tV_cLat"
+        app:layout_constraintBottom_toTopOf="@+id/tV_dLat_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_cLat_info"
         app:layout_constraintVertical_bias="0.326"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/tV_dLng"
+        android:id="@+id/tV_dLng_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Destination Lng"
@@ -81,8 +81,8 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_CompassCurrent"
-        app:layout_constraintTop_toBottomOf="@+id/tV_dLat"
+        app:layout_constraintBottom_toTopOf="@+id/tV_CompassCurrent_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_dLat_info"
         tools:layout_editor_absoluteX="-16dp" />
 
     <!--    <Button-->
@@ -161,7 +161,7 @@
         app:menu="@menu/bottom_nav_menu" />
 
     <TextView
-        android:id="@+id/tV_dLat"
+        android:id="@+id/tV_dLat_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Destination Lat"
@@ -169,12 +169,12 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_dLng"
-        app:layout_constraintTop_toBottomOf="@+id/tV_cLng"
+        app:layout_constraintBottom_toTopOf="@+id/tV_dLng_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_cLng_info"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/tV_CompassCurrent"
+        android:id="@+id/tV_CompassCurrent_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Compass Current"
@@ -182,8 +182,8 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_CompassRequired"
-        app:layout_constraintTop_toBottomOf="@+id/tV_dLng"
+        app:layout_constraintBottom_toTopOf="@+id/tV_CompassRequired_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_dLng_info"
         tools:layout_editor_absoluteX="0dp" />
 
     <LinearLayout
@@ -191,7 +191,7 @@
         android:layout_width="409dp"
         android:layout_height="45dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tV_cLat"
+        app:layout_constraintBottom_toTopOf="@+id/tV_cLat_info"
         app:layout_constraintTop_toBottomOf="@+id/mapStatus"
         tools:layout_editor_absoluteX="2dp">
 
@@ -213,7 +213,7 @@
             android:textAlignment="textStart">
 
             <TextView
-                android:id="@+id/tV_ultraLeft"
+                android:id="@+id/tV_ultraLeft_info"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:layout_weight="1"
@@ -237,7 +237,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tV_ultraMiddle"
+                android:id="@+id/tV_ultraMiddle_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -261,7 +261,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tV_ultraRight"
+                android:id="@+id/tV_ultraRight_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -275,7 +275,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvDistance"
+        android:id="@+id/tvDistance_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Distance till Destination:"
@@ -283,8 +283,8 @@
         android:textColorLink="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_Battery"
-        app:layout_constraintTop_toBottomOf="@+id/tV_steeringDirection"
+        app:layout_constraintBottom_toTopOf="@+id/tV_Battery_info"
+        app:layout_constraintTop_toBottomOf="@+id/tV_steeringDirection_info"
         tools:layout_editor_absoluteX="142dp" />
 
     <LinearLayout
@@ -324,7 +324,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tV_Battery"
+        android:id="@+id/tV_Battery_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -334,7 +334,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistance"
+        app:layout_constraintTop_toBottomOf="@+id/tvDistance_info"
         tools:layout_editor_absoluteX="142dp" />
 
     <!--    <TextView-->

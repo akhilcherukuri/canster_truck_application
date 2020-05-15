@@ -1,8 +1,5 @@
 package com.cmpe243.canstertest;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.bluetooth.BluetoothAdapter;
@@ -13,28 +10,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class InfoActivity extends AppCompatActivity  {
 
 
     //==============================BLUETOOTH==============================
@@ -54,28 +41,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //==============================OUTPUT==============================
       TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections, tVDistance, tVBattery;
-      Button mapStart, mapStop;
+      private double destinationLat = 0.0, destinationLng = 0.0;
+      private double currentLat = 0.0, currentLng = 0.0;
+      TextView statusInfo;
+      String dirCLat ="0.0" , dirCLng ="0.0";
     //==============================OUTPUT==============================
 
-    //==============================MAPS==============================
-    private GoogleMap mMap;
-    public Marker currentLocationMarker, destinationLocationMarker;
-    private double destinationLat = 0.0, destinationLng = 0.0;
-    private double currentLat = 0.0, currentLng = 0.0;
-    LatLng cansterDestination;
-    TextView statusMap;
-    String dirCLat ="0.0" , dirCLng ="0.0";
-    locationThread locationThread;
-    Polyline polyline;
-    boolean isCurrentSet = false;
-    boolean mapVisible = false;
-    ArrayList<LatLng> waypointsArray = new ArrayList<LatLng>();
-    //==============================MAPS==============================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_info);
 
         //==============================BLUETOOTH==============================
         Intent intent = getIntent();
@@ -84,7 +60,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //==============================BLUETOOTH==============================
 
         //==============================findViewById==============================
-        statusMap=(TextView)findViewById(R.id.mapStatus);
+        statusInfo =(TextView)findViewById(R.id.infoStatus);
           tVCLat=(TextView)findViewById(R.id.tV_cLat_info);
           tVCLng=(TextView)findViewById(R.id.tV_cLng_info);
           tVDLat=(TextView)findViewById(R.id.tV_dLat_info);
@@ -98,15 +74,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
           tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
           tVDistance=(TextView)findViewById(R.id.tvDistance_info);
           tVBattery=(TextView)findViewById(R.id.tV_Battery_info);
-          mapStart=(Button)findViewById(R.id.Map_Start);
-          mapStop=(Button)findViewById(R.id.Map_Stop);
+
         //==============================findViewByID==============================
 
-        //==============================MAPS==============================
-        final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        //==============================MAPS==============================
 
         //==============================BOTTOMNAVBAR==============================
         final BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
@@ -125,12 +95,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             mChatService.stop();
                         }
                         mBluetoothAdapter.cancelDiscovery();
-                        Intent openActivity3 = new Intent(MapsActivity.this, DebugActivity.class);
+                        Intent openActivity3 = new Intent(InfoActivity.this, DebugActivity.class);
                         openActivity3.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
                         startActivityForResult(openActivity3,1);
                         break;
                     case R.id.navigation_maps:
-                        Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InfoActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_bluetooth:
 //                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
@@ -145,18 +115,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                                .color(Color.GREEN));
 //                        locationThread = new locationThread();
 //                        locationThread.start();
-                        Toast.makeText(MapsActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InfoActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
                         mChatService.stop();
                         setupChat();
-                        break;
-                    case R.id.navigation_info:
-                        if (mChatService != null) {
-                            mChatService.stop();
-                        }
-                        mBluetoothAdapter.cancelDiscovery();
-                        Intent openActivity4 = new Intent(MapsActivity.this, InfoActivity.class);
-                        openActivity4.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
-                        startActivityForResult(openActivity4,1);
                         break;
                 }
                 return true;
@@ -164,99 +125,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
         //==============================BOTTOMNAVBAR==============================
 
-        waypointsCreate();
 
         //==============================TOPTOOLBAR==============================
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(myToolbar);
         //==============================TOPTOOLBAR==============================
-    }
-/*==================================================================================================================================
-    Called when the map is ready to be used
-==================================================================================================================================*/
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        // Add a marker in SJSU 10th Street and move the camera
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        LatLng cansterCurrentLocation = new LatLng(37.339312, -121.881111);
-        MarkerOptions a = new MarkerOptions().position(cansterCurrentLocation).title("Canster Truck").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        //currentLocationMarker = mMap.addMarker(a);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cansterCurrentLocation));
-        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
-
-        for(int i = 0 ; i < waypointsArray.size() ; i++) {
-            mMap.addMarker(new MarkerOptions().position(waypointsArray.get(i)).title(String.valueOf(i+1)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))).showInfoWindow();
-        }
-
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                if(destinationLocationMarker != null) {
-                    destinationLocationMarker.remove();
-                //destinationLat = 0.0; destinationLng =0.0;
-                }
-                destinationLat = latLng.latitude; destinationLng = latLng.longitude;
-                cansterDestination = new LatLng(destinationLat,destinationLng);
-                MarkerOptions dest = new MarkerOptions().position(cansterDestination).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                destinationLocationMarker = mMap.addMarker(dest);
-                String infoMap = + Math.floor(destinationLat*100000)/100000 + "," + Math.floor(destinationLng*100000)/100000;
-                destinationLocationMarker.setTitle(infoMap);
-                destinationLocationMarker.showInfoWindow();
-                userToast("Destination Marker:","Added",false);
-            }
-        });
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if (marker == destinationLocationMarker){
-                    marker.remove();
-                    destinationLat = 0.0; destinationLng =0.0;
-                    userToast("Destination Marker:","Removed",false);
-                }
-                marker.showInfoWindow();
-                return true;
-            }
-        });
-
-    }
-    public void waypointsCreate() {
-        waypointsArray.add(new LatLng(37.33925,-121.88125)); //1
-        waypointsArray.add(new LatLng(37.33940,-121.88124)); //2
-        waypointsArray.add(new LatLng(37.33962,-121.88150)); //3
-        waypointsArray.add(new LatLng(37.33979,-121.88139)); //4
-        waypointsArray.add(new LatLng(37.33994,-121.88093)); //5
-        waypointsArray.add(new LatLng(37.33965,-121.88058)); //6
-        waypointsArray.add(new LatLng(37.33952,-121.88083)); //7
-        waypointsArray.add(new LatLng(37.33954,-121.88107)); //8
-        waypointsArray.add(new LatLng(37.33916,-121.88108)); //9
-        waypointsArray.add(new LatLng(37.33931,-121.88073)); //10
-        waypointsArray.add(new LatLng(37.33919,-121.88028)); //11
-        waypointsArray.add(new LatLng(37.33902,-121.88050)); //12
-        waypointsArray.add(new LatLng(37.33881,-121.88085)); //13
-        waypointsArray.add(new LatLng(37.33865,-121.88073)); //14
-        waypointsArray.add(new LatLng(37.33880,-121.88038)); //15
-    }
-
-    public void mapStart (View view) {
-        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
-        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
-        userToast("Status: ","START message sent",false);
-        sendMessage(message2);
-        polyline = mMap.addPolyline(new PolylineOptions()
-                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
-                .width(8)
-                .color(Color.GREEN));
-        locationThread = new locationThread();
-        locationThread.start();
-    }
-
-    public void mapStop (View view) {
-        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
-        String message1 = "$STOP\r\n";
-        userToast("Status: ","STOP message sent",false);
-        sendMessage(message1);
     }
 
     private void connectDevice(boolean secure) {
@@ -295,10 +168,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         connectDevice(false);
     }
 
-    public void mapReset() {
-        mMap.clear();
-
-    }
 /*==================================================================================================================================
     Handler allows you to send and process Message and Runnable objects associated with a thread's MessageQueue.
 ==================================================================================================================================*/
@@ -387,10 +256,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
             tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n");
             if (dirReached.equals("1")) {
-                statusMap.setText("Status: Destination Reached");
+                statusInfo.setText("Status: Destination Reached");
                 manageBlinkEffect();
             } else {
-                statusMap.setText("Status: Going to Destination");
+                statusInfo.setText("Status: Going to Destination");
             }
             switch (dirSteerHeading) {
                 case "-2":
@@ -420,7 +289,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (toast) {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
         }
-        statusMap.setText(prefix + message);
+        statusInfo.setText(prefix + message);
 
     }
 /*==================================================================================================================================
@@ -434,55 +303,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         mBluetoothAdapter.cancelDiscovery();
         //mBluetoothAdapter.disable();
-        locationThread.cancel();
         finish();
     }
     public void manageBlinkEffect() {
-        ObjectAnimator anim = ObjectAnimator.ofInt(statusMap,"backgroundColor",Color.BLACK,Color.RED,Color.BLACK);
+        ObjectAnimator anim = ObjectAnimator.ofInt(statusInfo,"backgroundColor",Color.BLACK,Color.RED,Color.BLACK);
         anim.setDuration(800);
         anim.setEvaluator(new ArgbEvaluator());
 //        anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(10);
         anim.start();
     }
-
-    class locationThread extends Thread {
-        @Override
-        public void run() {
-            try {
-                while(!Thread.currentThread().isInterrupted()) {
-                    sleep(1000);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(isCurrentSet)
-                            {
-                                currentLocationMarker.remove();
-                                polyline.remove();
-                            }
-                            else
-                                isCurrentSet = true;
-                                polyline.remove();
-                            LatLng currentLocation = new LatLng(Double.parseDouble(dirCLat) , Double.parseDouble(dirCLng));
-                            currentLocationMarker = mMap.addMarker(new MarkerOptions().position(currentLocation).icon(BitmapDescriptorFactory
-                                    .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                            String infoMap2 = + Math.floor(Double.parseDouble(dirCLat)*100000)/100000 + "," + Math.floor(Double.parseDouble(dirCLng)*100000)/100000;
-                            currentLocationMarker.setTitle(infoMap2);
-                            currentLocationMarker.showInfoWindow();
-                            mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
-                            polyline = mMap.addPolyline(new PolylineOptions()
-                                    .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
-                                    .width(8)
-                                    .color(Color.GREEN));
-                        }
-                    });
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        public void cancel() {
-            interrupt();
-        }
-    };
 }

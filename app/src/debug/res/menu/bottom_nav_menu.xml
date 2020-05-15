@@ -18,6 +18,13 @@
         android:title="Maps"/>
 
     <item
+        android:id="@+id/navigation_info"
+        android:icon="@drawable/ic_info_outline_black_24dp"
+        app:itemIconTint="@android:color/holo_red_light"
+        app:itemTextColor="@android:color/holo_red_light"
+        android:title="Info" />
+
+    <item
         android:id="@+id/navigation_debug"
         android:icon="@drawable/ic_info_outline_black_24dp"
         app:itemIconTint="@android:color/holo_red_light"
