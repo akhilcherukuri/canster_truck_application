@@ -100,7 +100,13 @@ public class InfoActivity extends AppCompatActivity  {
                         startActivityForResult(openActivity3,1);
                         break;
                     case R.id.navigation_maps:
-                        Toast.makeText(InfoActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
+                        if (mChatService != null) {
+                            mChatService.stop();
+                        }
+                        mBluetoothAdapter.cancelDiscovery();
+                        Intent openActivity2 = new Intent(InfoActivity.this, MapsActivity.class);
+                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+                        startActivityForResult(openActivity2,1);
                         break;
                     case R.id.navigation_bluetooth:
 //                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
@@ -242,6 +248,7 @@ public class InfoActivity extends AppCompatActivity  {
         String dirPWM = tokenizer.nextToken();
         String dirSonar = tokenizer.nextToken();
         String dirMotorSpeed = tokenizer.nextToken();
+        String dirMotorSpeedText = "";
         if (dirIgnore.endsWith("canster")) {
             tVUL.setText("Left: " + dirUL + " cm");
             tVUM.setText("Middle: " + dirUM + " cm");
@@ -276,6 +283,29 @@ public class InfoActivity extends AppCompatActivity  {
                     break;
                 case "2":
                     tVSteerDirections.setText("Steering Directions: Hard Right");
+                    break;
+            }
+            switch (dirMotorSpeed) {
+                case "-3":
+                    dirMotorSpeedText = "Reverse Fast";
+                    break;
+                case "-2":
+                    dirMotorSpeedText = "Reverse Medium";
+                    break;
+                case "-1":
+                    dirMotorSpeedText = "Reverse Slow";
+                    break;
+                case "0":
+                    dirMotorSpeedText = "Neutral";
+                    break;
+                case "1":
+                    dirMotorSpeedText = "Forward Slow";
+                    break;
+                case "2":
+                    dirMotorSpeedText = "Forward Medium";
+                    break;
+                case "3":
+                    dirMotorSpeedText = "Forward Fast";
                     break;
             }
         }

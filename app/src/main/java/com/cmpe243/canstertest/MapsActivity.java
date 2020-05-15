@@ -222,21 +222,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
     public void waypointsCreate() {
-        waypointsArray.add(new LatLng(37.33925,-121.88125)); //1
-        waypointsArray.add(new LatLng(37.33940,-121.88124)); //2
-        waypointsArray.add(new LatLng(37.33962,-121.88150)); //3
-        waypointsArray.add(new LatLng(37.33979,-121.88139)); //4
-        waypointsArray.add(new LatLng(37.33994,-121.88093)); //5
-        waypointsArray.add(new LatLng(37.33965,-121.88058)); //6
-        waypointsArray.add(new LatLng(37.33952,-121.88083)); //7
-        waypointsArray.add(new LatLng(37.33954,-121.88107)); //8
-        waypointsArray.add(new LatLng(37.33916,-121.88108)); //9
-        waypointsArray.add(new LatLng(37.33931,-121.88073)); //10
-        waypointsArray.add(new LatLng(37.33919,-121.88028)); //11
-        waypointsArray.add(new LatLng(37.33902,-121.88050)); //12
-        waypointsArray.add(new LatLng(37.33881,-121.88085)); //13
-        waypointsArray.add(new LatLng(37.33865,-121.88073)); //14
-        waypointsArray.add(new LatLng(37.33880,-121.88038)); //15
+        waypointsArray.add(new LatLng(37.339334,-121.881123)); //1
+        waypointsArray.add(new LatLng(37.339498, -121.881246)); //2
+        waypointsArray.add(new LatLng(37.339632, -121.881338)); //3
+        waypointsArray.add(new LatLng(37.339772, -121.881025)); //4
+        waypointsArray.add(new LatLng(37.339910, -121.880726)); //5
+        waypointsArray.add(new LatLng(37.339743, -121.880586)); //6
+        waypointsArray.add(new LatLng(37.339633, -121.880850)); //7
+        waypointsArray.add(new LatLng(37.339545, -121.880953)); //8
+        waypointsArray.add(new LatLng(37.339344, -121.880801)); //9
+        waypointsArray.add(new LatLng(37.339455, -121.880540)); //10
+        waypointsArray.add(new LatLng(37.339379, -121.880327)); //11
+        waypointsArray.add(new LatLng(37.339172, -121.880507)); //12
+        waypointsArray.add(new LatLng(37.339025, -121.880883)); //13
+        waypointsArray.add(new LatLng(37.338825, -121.880755)); //14
+        waypointsArray.add(new LatLng(37.339005, -121.880373)); //15
+        waypointsArray.add(new LatLng(37.339085, -121.880121)); //16
+        waypointsArray.add(new LatLng(37.338991, -121.880059)); //17
+        waypointsArray.add(new LatLng(37.338881, -121.880291)); //18
+        //waypointsArray.add(new LatLng(37.338777, -121.880523)); //19
+        waypointsArray.add(new LatLng(37.338713, -121.880658)); //20
     }
 
     public void mapStart (View view) {
