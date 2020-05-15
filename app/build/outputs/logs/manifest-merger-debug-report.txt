@@ -4,6 +4,7 @@ ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-ui:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/6aeecca85dd981dd0e1d529276843c57/navigation-ui-2.2.1/AndroidManifest.xml:17:1-24:12
@@ -99,6 +100,8 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcheru
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:15:22-64
 application
 ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:17:5-65:19
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:7:5-11:19
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:7:5-11:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
@@ -145,6 +148,8 @@ ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/
 		ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:34:13-58
 meta-data#com.google.android.gms.version
 ADDED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:36:9-38:69
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:8:9-10:69
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:8:9-10:69
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/752a983649401b2c06f8f162da3a35f7/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/752a983649401b2c06f8f162da3a35f7/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 	android:value
@@ -199,6 +204,8 @@ uses-sdk
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:5:5-43
+MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:5:5-43
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44

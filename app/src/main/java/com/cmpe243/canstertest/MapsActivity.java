@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -148,6 +149,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Toast.makeText(MapsActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
                         mChatService.stop();
                         setupChat();
+                        //mapReset();
                         break;
                     case R.id.navigation_info:
                         if (mChatService != null) {
@@ -186,7 +188,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
 
         for(int i = 0 ; i < waypointsArray.size() ; i++) {
-            mMap.addMarker(new MarkerOptions().position(waypointsArray.get(i)).title(String.valueOf(i+1)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))).showInfoWindow();
+            IconGenerator iconFactory = new IconGenerator(this);
+            String number = String.valueOf(i+1);
+            MarkerOptions waypointsMarker = new MarkerOptions().position(waypointsArray.get(i)).title(String.valueOf(i+1));
+            waypointsMarker.icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(number)));
+            googleMap.addMarker(waypointsMarker);
+            // mMap.addMarker(new MarkerOptions().position(waypointsArray.get(i)).title(String.valueOf(i+1)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))).showInfoWindow();
         }
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -242,6 +249,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         waypointsArray.add(new LatLng(37.338881, -121.880291)); //18
         //waypointsArray.add(new LatLng(37.338777, -121.880523)); //19
         waypointsArray.add(new LatLng(37.338713, -121.880658)); //20
+    }
+
+    public void mapReset() {
+        //mMap.clear();
+        polyline.remove();
+
+        if(locationThread.isAlive()){
+            locationThread.interrupt();
+        }
+        locationThread = new locationThread();
+        locationThread.start();
     }
 
     public void mapStart (View view) {
@@ -300,10 +318,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         connectDevice(false);
     }
 
-    public void mapReset() {
-        mMap.clear();
-
-    }
 /*==================================================================================================================================
     Handler allows you to send and process Message and Runnable objects associated with a thread's MessageQueue.
 ==================================================================================================================================*/
