@@ -6,9 +6,10 @@ INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/ma
 INJECTED from /Users/akhilcherukuri/AndroidStudioProjects/canstertest/app/src/main/AndroidManifest.xml:2:1-67:12
 MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:17:1-38:12
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-ui:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/6aeecca85dd981dd0e1d529276843c57/navigation-ui-2.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/4bcf2eceb08199f7c727c07aab682f4b/material-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/13cf2c1f14bae30261bdb227613b37e7/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/ea88890b09526096266c9c16859169ae/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/cb3ee0668a2ccffbec6ced598c9d8e79/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.navigation:navigation-fragment:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a931822e755004f58825dfcef8e9157d/navigation-fragment-2.2.1/AndroidManifest.xml:17:1-24:12
@@ -38,7 +39,6 @@ MERGED from [androidx.activity:activity:1.1.0] /Users/akhilcherukuri/.gradle/cac
 MERGED from [androidx.navigation:navigation-common:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/baa6868fdd09c1eeeba714a54d474d78/navigation-common-2.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.1.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/da95e0dd41fd0c634661df2a0f122634/core-1.1.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/2f8d1ed6722dd8ec027727976d721a74/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/13cf2c1f14bae30261bdb227613b37e7/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/090434a1b2305b2572c380a8c896bb3c/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:17:1-32:12
 MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/79643c0fe97454736135149d15f3d1d7/jetified-lifecycle-service-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/7528df62744a29aba5eda401e99f629c/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
@@ -104,10 +104,10 @@ MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcheru
 MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:7:5-11:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:30:5-36:19
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/4bcf2eceb08199f7c727c07aab682f4b/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/4bcf2eceb08199f7c727c07aab682f4b/material-1.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:7:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/cb3ee0668a2ccffbec6ced598c9d8e79/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/cb3ee0668a2ccffbec6ced598c9d8e79/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/d9cefb3caf5c802adebb45c7ed5e61db/lifecycle-extensions-2.2.0/AndroidManifest.xml:24:5-25:19
@@ -208,12 +208,14 @@ MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcheru
 MERGED from [com.google.maps.android:android-maps-utils:0.4.4] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/f39cf400ee8d56b7d82a1231a4a93f5c/jetified-android-maps-utils-0.4.4/AndroidManifest.xml:5:5-43
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/a9ed8aaed483b33b1021fe1efd2e7709/jetified-play-services-maps-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.navigation:navigation-ui:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/6aeecca85dd981dd0e1d529276843c57/navigation-ui-2.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-ui:2.2.1] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/6aeecca85dd981dd0e1d529276843c57/navigation-ui-2.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/4bcf2eceb08199f7c727c07aab682f4b/material-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/4bcf2eceb08199f7c727c07aab682f4b/material-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/13cf2c1f14bae30261bdb227613b37e7/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/13cf2c1f14bae30261bdb227613b37e7/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:17.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/9c471c6fca5c331b02b0846d937f0a6f/jetified-play-services-location-17.0.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/ea88890b09526096266c9c16859169ae/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/ea88890b09526096266c9c16859169ae/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/cb3ee0668a2ccffbec6ced598c9d8e79/constraintlayout-1.1.3/AndroidManifest.xml:5:5-7:41
@@ -272,8 +274,6 @@ MERGED from [androidx.core:core:1.1.0] /Users/akhilcherukuri/.gradle/caches/tran
 MERGED from [androidx.core:core:1.1.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/da95e0dd41fd0c634661df2a0f122634/core-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/2f8d1ed6722dd8ec027727976d721a74/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/2f8d1ed6722dd8ec027727976d721a74/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/13cf2c1f14bae30261bdb227613b37e7/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/13cf2c1f14bae30261bdb227613b37e7/cardview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/090434a1b2305b2572c380a8c896bb3c/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/090434a1b2305b2572c380a8c896bb3c/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] /Users/akhilcherukuri/.gradle/caches/transforms-2/files-2.1/79643c0fe97454736135149d15f3d1d7/jetified-lifecycle-service-2.2.0/AndroidManifest.xml:20:5-22:41

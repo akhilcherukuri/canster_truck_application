@@ -249,6 +249,7 @@ public class InfoActivity extends AppCompatActivity  {
         String dirSonar = tokenizer.nextToken();
         String dirMotorSpeed = tokenizer.nextToken();
         String dirMotorSpeedText = "";
+        String dirCheckpointIndex = tokenizer.nextToken();
         if (dirIgnore.endsWith("canster")) {
             tVUL.setText("Left: " + dirUL + " cm");
             tVUM.setText("Middle: " + dirUM + " cm");
@@ -261,7 +262,7 @@ public class InfoActivity extends AppCompatActivity  {
             tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
             tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
-            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n");
+            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n" + "Checkpoint Index\t" + dirCheckpointIndex +"\n");
             if (dirReached.equals("1")) {
                 statusInfo.setText("Status: Destination Reached");
                 manageBlinkEffect();

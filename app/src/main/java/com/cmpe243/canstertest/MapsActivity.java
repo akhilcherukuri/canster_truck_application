@@ -251,16 +251,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         waypointsArray.add(new LatLng(37.338713, -121.880658)); //20
     }
 
-    public void mapReset() {
-        //mMap.clear();
-        polyline.remove();
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        MapsActivity.activityResumed();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        MapsActivity.activityPaused();
+//    }
 
-        if(locationThread.isAlive()){
-            locationThread.interrupt();
-        }
-        locationThread = new locationThread();
-        locationThread.start();
-    }
+//    public void mapReset() {
+//        //mMap.clear();
+//        polyline.remove();
+//
+//        if(locationThread.isAlive()){
+//            locationThread.interrupt();
+//        }
+//        locationThread = new locationThread();
+//        locationThread.start();
+//    }
 
     public void mapStart (View view) {
         Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
@@ -392,6 +404,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String dirPWM = tokenizer.nextToken();
         String dirSonar = tokenizer.nextToken();
         String dirMotorSpeed = tokenizer.nextToken();
+        String dirCheckpointIndex = tokenizer.nextToken();
         if (dirIgnore.endsWith("canster")) {
             tVUL.setText("Left: " + dirUL + " cm");
             tVUM.setText("Middle: " + dirUM + " cm");
@@ -404,7 +417,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
             tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
-            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n");
+            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n" + "Checkpoint Index:\t" + dirCheckpointIndex +"\n");
             if (dirReached.equals("1")) {
                 statusMap.setText("Status: Destination Reached");
                 manageBlinkEffect();
@@ -488,7 +501,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             String infoMap2 = + Math.floor(Double.parseDouble(dirCLat)*100000)/100000 + "," + Math.floor(Double.parseDouble(dirCLng)*100000)/100000;
                             currentLocationMarker.setTitle(infoMap2);
                             currentLocationMarker.showInfoWindow();
-                            mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
+                            //mMap.animateCamera(CameraUpdateFactory.newLatLng(currentLocation));
                             polyline = mMap.addPolyline(new PolylineOptions()
                                     .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
                                     .width(8)
