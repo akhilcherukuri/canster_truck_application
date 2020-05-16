@@ -36,7 +36,7 @@ public class DebugActivity extends AppCompatActivity {
     public static String EXTRA_ADDRESS = "device_address";
 
     Button send_btn,start_btn,stop_btn;
-    TextView status,rxData;
+    TextView status, receivedData;
     EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +49,17 @@ public class DebugActivity extends AppCompatActivity {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //Bluetooth_Setting:
 
-        rxData=(TextView)findViewById(R.id.rxData) ;
+        receivedData =(TextView)findViewById(R.id.rxData) ;
         status=(TextView)findViewById(R.id.status);
         send_btn=(Button)findViewById(R.id.send_btn);
-        start_btn=(Button)findViewById(R.id.start_btn);
-        stop_btn=(Button) findViewById(R.id.stop_btn);
+//        start_btn=(Button)findViewById(R.id.start_btn);
+//        stop_btn=(Button) findViewById(R.id.stop_btn);
         //end_btn=(Button)findViewById(R.id.end_btn);
         editText=(EditText) findViewById(R.id.editText);
         appendMessages = new StringBuilder();
         appendMessages2 = new StringBuilder();
 
-        rxData.setMovementMethod(new ScrollingMovementMethod());
+        receivedData.setMovementMethod(new ScrollingMovementMethod());
 
         userToast("Status: Connected to ",mConnectedDeviceAddress,true);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavBar);
@@ -83,6 +83,15 @@ public class DebugActivity extends AppCompatActivity {
                         Toast.makeText(DebugActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
                         mChatService.stop();
                         setupChat();
+                        break;
+                    case R.id.navigation_info:
+                        if (mChatService != null) {
+                            mChatService.stop();
+                        }
+                        mBluetoothAdapter.cancelDiscovery();
+                        Intent openActivity2 = new Intent(DebugActivity.this, InfoActivity.class);
+                        openActivity2.putExtra(EXTRA_ADDRESS,mConnectedDeviceAddress);
+                        startActivityForResult(openActivity2,1);
                         break;
 
                 }
@@ -201,27 +210,27 @@ public class DebugActivity extends AppCompatActivity {
     public void send_btn(View view) {
         String message = (editText.getText().toString() + "\r\n");
         appendMessages.append("TX: \t" + message + "\n");
-        rxData.setText(appendMessages);
+        receivedData.setText(appendMessages);
         sendMessage(message);
     }
 
     public void start_btn(View view) {
         String message = "$START\r\n";
         appendMessages.append("TX: \t" + message + "\n");
-        rxData.setText(appendMessages);
+        receivedData.setText(appendMessages);
         sendMessage(message);
     }
 
     public void stop_btn(View view) {
         String message = "$STOP\r\n";
         appendMessages.append("TX: \t" + message + "\n");
-        rxData.setText(appendMessages);
+        receivedData.setText(appendMessages);
         sendMessage(message);
     }
 
     private void parseMessage(String readMessage) {
         appendMessages.append("RX: \t" + readMessage + "\n");
-        rxData.setText(appendMessages);
+        receivedData.setText(appendMessages);
         //rxData.setText("RX: "+readMessage);
     }
 
