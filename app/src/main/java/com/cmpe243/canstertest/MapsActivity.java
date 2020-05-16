@@ -86,21 +86,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //==============================findViewById==============================
         statusMap=(TextView)findViewById(R.id.mapStatus);
-          tVCLat=(TextView)findViewById(R.id.tV_cLat_info);
-          tVCLng=(TextView)findViewById(R.id.tV_cLng_info);
-          tVDLat=(TextView)findViewById(R.id.tV_dLat_info);
-          tVDLng=(TextView)findViewById(R.id.tV_dLng_info);
-          tVCmpsCurrent=(TextView)findViewById(R.id.tV_CompassCurrent_info);
-          tVCmpsRequired=(TextView)findViewById(R.id.tV_CompassRequired_info);
-          tVSpeed=(TextView)findViewById(R.id.tV_speed_info);
-          tVSteerDirections=(TextView)findViewById(R.id.tV_steeringDirection_info);
-          tVUL=(TextView)findViewById(R.id.tV_ultraLeft_info);
-          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle_info);
-          tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
-          tVDistance=(TextView)findViewById(R.id.tvDistance_info);
-          tVBattery=(TextView)findViewById(R.id.tV_Battery_info);
-          mapStart=(Button)findViewById(R.id.Map_Start);
-          mapStop=(Button)findViewById(R.id.Map_Stop);
+//          tVCLat=(TextView)findViewById(R.id.tV_cLat_info);
+//          tVCLng=(TextView)findViewById(R.id.tV_cLng_info);
+//          tVDLat=(TextView)findViewById(R.id.tV_dLat_info);
+//          tVDLng=(TextView)findViewById(R.id.tV_dLng_info);
+//          tVCmpsCurrent=(TextView)findViewById(R.id.tV_CompassCurrent_info);
+//          tVCmpsRequired=(TextView)findViewById(R.id.tV_CompassRequired_info);
+//          tVSpeed=(TextView)findViewById(R.id.tV_speed_info);
+//          tVSteerDirections=(TextView)findViewById(R.id.tV_steeringDirection_info);
+//          tVUL=(TextView)findViewById(R.id.tV_ultraLeft_info);
+//          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle_info);
+//          tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
+//          tVDistance=(TextView)findViewById(R.id.tvDistance_info);
+//          tVBattery=(TextView)findViewById(R.id.tV_Battery_info);
+//          mapStart=(Button)findViewById(R.id.Map_Start);
+//          mapStop=(Button)findViewById(R.id.Map_Stop);
         //==============================findViewByID==============================
 
         //==============================MAPS==============================
@@ -116,12 +116,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_debug:
-//                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.RED));
-//                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
-//                        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
-//                        String message1 = "$STOP\r\n";
-//                        userToast("Status: ","STOP message sent",false);
-//                        sendMessage(message1);
                         if (mChatService != null) {
                             mChatService.stop();
                         }
@@ -134,18 +128,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         Toast.makeText(MapsActivity.this, "Already On Maps", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.navigation_bluetooth:
-//                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
-//                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
-//                        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
-//                        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
-//                        userToast("Status: ","START message sent",false);
-//                        sendMessage(message2);
-//                            polyline = mMap.addPolyline(new PolylineOptions()
-//                                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
-//                                .width(8)
-//                                .color(Color.GREEN));
-//                        locationThread = new locationThread();
-//                        locationThread.start();
                         Toast.makeText(MapsActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
                         mChatService.stop();
                         setupChat();
@@ -229,26 +211,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
     public void waypointsCreate() {
-        waypointsArray.add(new LatLng(37.339334,-121.881123)); //1
-        waypointsArray.add(new LatLng(37.339498, -121.881246)); //2
-        waypointsArray.add(new LatLng(37.339632, -121.881338)); //3
-        waypointsArray.add(new LatLng(37.339772, -121.881025)); //4
-        waypointsArray.add(new LatLng(37.339910, -121.880726)); //5
-        waypointsArray.add(new LatLng(37.339743, -121.880586)); //6
-        waypointsArray.add(new LatLng(37.339633, -121.880850)); //7
-        waypointsArray.add(new LatLng(37.339545, -121.880953)); //8
-        waypointsArray.add(new LatLng(37.339344, -121.880801)); //9
-        waypointsArray.add(new LatLng(37.339455, -121.880540)); //10
-        waypointsArray.add(new LatLng(37.339379, -121.880327)); //11
-        waypointsArray.add(new LatLng(37.339172, -121.880507)); //12
-        waypointsArray.add(new LatLng(37.339025, -121.880883)); //13
-        waypointsArray.add(new LatLng(37.338825, -121.880755)); //14
-        waypointsArray.add(new LatLng(37.339005, -121.880373)); //15
-        waypointsArray.add(new LatLng(37.339085, -121.880121)); //16
-        waypointsArray.add(new LatLng(37.338991, -121.880059)); //17
-        waypointsArray.add(new LatLng(37.338881, -121.880291)); //18
-        //waypointsArray.add(new LatLng(37.338777, -121.880523)); //19
-        waypointsArray.add(new LatLng(37.338713, -121.880658)); //20
+        waypointsArray.add(new LatLng(37.339606, -121.881361)); //1 Index[0]
+        waypointsArray.add(new LatLng(37.339889, -121.880759)); //2 Index[1]
+        waypointsArray.add(new LatLng(37.339560, -121.880922)); //3 Index[2]
+        waypointsArray.add(new LatLng(37.339258, -121.880861)); //4 Index[3]
+        waypointsArray.add(new LatLng(37.339430, -121.880493)); //5 Index[4]
+        waypointsArray.add(new LatLng(37.339083, -121.880566)); //6 Index[5]
+        waypointsArray.add(new LatLng(37.339006, -121.880105)); //7 Index[6]
+        waypointsArray.add(new LatLng(37.338720, -121.880695)); //8 Index[7]
     }
 
 //    @Override
@@ -405,43 +375,43 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         String dirSonar = tokenizer.nextToken();
         String dirMotorSpeed = tokenizer.nextToken();
         String dirCheckpointIndex = tokenizer.nextToken();
-        if (dirIgnore.endsWith("canster")) {
-            tVUL.setText("Left: " + dirUL + " cm");
-            tVUM.setText("Middle: " + dirUM + " cm");
-            tVUR.setText("Right: " + dirUR + " cm");
-            tVCLat.setText("Current Latitude:\t" + dirCLat + "°");
-            tVCLng.setText("Current Longitude:\t" + dirCLng + "°");
-            tVDLat.setText("Destination Latitude:\t" + dirDLat + "°");
-            tVDLng.setText("Destination Longitude:\t" + dirDLng + "°");
-            tVCmpsCurrent.setText("Current Compass Heading:\t" + dirCCompass + "°");
-            tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
-            tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
-            tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
-            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n" + "Checkpoint Index:\t" + dirCheckpointIndex +"\n");
-            if (dirReached.equals("1")) {
-                statusMap.setText("Status: Destination Reached");
-                manageBlinkEffect();
-            } else {
-                statusMap.setText("Status: Going to Destination");
-            }
-            switch (dirSteerHeading) {
-                case "-2":
-                    tVSteerDirections.setText("Steering Directions: Hard Left");
-                    break;
-                case "-1":
-                    tVSteerDirections.setText("Steering Directions: Slightly Left");
-                    break;
-                case "0":
-                    tVSteerDirections.setText("Steering Directions: Straight");
-                    break;
-                case "1":
-                    tVSteerDirections.setText("Steering Directions: Slightly Right");
-                    break;
-                case "2":
-                    tVSteerDirections.setText("Steering Directions: Hard Right");
-                    break;
-            }
-        }
+//        if (dirIgnore.endsWith("canster")) {
+//            tVUL.setText("Left: " + dirUL + " cm");
+//            tVUM.setText("Middle: " + dirUM + " cm");
+//            tVUR.setText("Right: " + dirUR + " cm");
+//            tVCLat.setText("Current Latitude:\t" + dirCLat + "°");
+//            tVCLng.setText("Current Longitude:\t" + dirCLng + "°");
+//            tVDLat.setText("Destination Latitude:\t" + dirDLat + "°");
+//            tVDLng.setText("Destination Longitude:\t" + dirDLng + "°");
+//            tVCmpsCurrent.setText("Current Compass Heading:\t" + dirCCompass + "°");
+//            tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
+//            tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
+//            tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
+//            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n" + "Checkpoint Index:\t" + dirCheckpointIndex +"\n");
+//            if (dirReached.equals("1")) {
+//                statusMap.setText("Status: Destination Reached");
+//                manageBlinkEffect();
+//            } else {
+//                statusMap.setText("Status: Going to Destination");
+//            }
+//            switch (dirSteerHeading) {
+//                case "-2":
+//                    tVSteerDirections.setText("Steering Directions: Hard Left");
+//                    break;
+//                case "-1":
+//                    tVSteerDirections.setText("Steering Directions: Slightly Left");
+//                    break;
+//                case "0":
+//                    tVSteerDirections.setText("Steering Directions: Straight");
+//                    break;
+//                case "1":
+//                    tVSteerDirections.setText("Steering Directions: Slightly Right");
+//                    break;
+//                case "2":
+//                    tVSteerDirections.setText("Steering Directions: Hard Right");
+//                    break;
+//            }
+//        }
     }
 /*==================================================================================================================================
     userToast is used to Log messages to show in status textView,

@@ -7,143 +7,35 @@
 
 
     <TextView
-        android:id="@+id/tV_speed_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Speed:"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_steeringDirection_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_CompassRequired_info"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <TextView
-        android:id="@+id/tV_steeringDirection_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Steering Direction:"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvDistance_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_speed_info"
-        tools:layout_editor_absoluteX="-1dp" />
-
-    <TextView
-        android:id="@+id/tV_CompassRequired_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Compass Required"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_speed_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_CompassCurrent_info"
-        tools:layout_editor_absoluteX="-1dp" />
-
-    <TextView
-        android:id="@+id/tV_cLat_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Current Lat"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_cLng_info"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <TextView
-        android:id="@+id/tV_cLng_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Current Lng"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_dLat_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_cLat_info"
-        app:layout_constraintVertical_bias="0.326"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <TextView
-        android:id="@+id/tV_dLng_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Destination Lng"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_CompassCurrent_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_dLat_info"
-        tools:layout_editor_absoluteX="-16dp" />
-
-    <!--    <Button-->
-    <!--        android:id="@+id/mapStartButton"-->
-    <!--        android:layout_width="200dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="427dp"-->
-    <!--        android:layout_marginBottom="256dp"-->
-    <!--        android:background="#64DD17"-->
-    <!--        android:onClick="startTripButtonClicked"-->
-    <!--        android:text="START"-->
-    <!--        android:textSize="18sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:visibility="gone" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/mapStopButton"-->
-    <!--        android:layout_width="200dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="427dp"-->
-    <!--        android:layout_marginBottom="256dp"-->
-    <!--        android:background="#D50000"-->
-    <!--        android:onClick="stopTripButtonClicked"-->
-    <!--        android:text="STOP"-->
-    <!--        android:textSize="18sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:visibility="gone" />-->
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/googlesans_bold"
+        android:text=" Canster Truck Map"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="229dp"
+        android:layout_height="541dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginBottom="32dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/mapStatus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:context=".MapsActivity"></androidx.fragment.app.FragmentContainerView>
-
-    <TextView
-        android:id="@+id/mapStatus"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:text="Status: "
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        tools:context=".MapsActivity" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavBar"
@@ -161,143 +53,36 @@
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"/>
 
-    <TextView
-        android:id="@+id/tV_dLat_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Destination Lat"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_dLng_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_cLng_info"
-        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/tV_CompassCurrent_info"
+        android:id="@+id/mapStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Compass Current"
+        android:layout_marginTop="38dp"
+        android:layout_marginBottom="51dp"
+        android:gravity="center_vertical"
+        android:text="Status: "
         android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_CompassRequired_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_dLng_info"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="409dp"
-        android:layout_height="45dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tV_cLat_info"
-        app:layout_constraintTop_toBottomOf="@+id/mapStatus"
-        tools:layout_editor_absoluteX="2dp">
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Distance from Obstacle:"
-            android:textColor="#FFFFFF"
-            android:textColorLink="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:textAlignment="textStart">
-
-            <TextView
-                android:id="@+id/tV_ultraLeft_info"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_weight="1"
-                android:text="Left"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="|"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tV_ultraMiddle_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Middle"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="|"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tV_ultraRight_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Right"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF"
-                android:textColorLink="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvDistance_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Distance till Destination:"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tV_Battery_info"
-        app:layout_constraintTop_toBottomOf="@+id/tV_steeringDirection_info"
-        tools:layout_editor_absoluteX="142dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="169dp"
         android:layout_height="47dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="32dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapStatus">
 
         <Button
             android:id="@+id/Map_Start"
@@ -307,9 +92,7 @@
             android:onClick="mapStart"
             android:text="START"
             tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="88dp"
-            tools:layout_editor_absoluteX="90dp"
-            tools:layout_editor_absoluteY="318dp" />
+            tools:layout_conversion_absoluteWidth="88dp" />
 
         <Button
             android:id="@+id/Map_Stop"
@@ -319,104 +102,8 @@
             android:onClick="mapStop"
             android:text="STOP"
             tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="88dp"
-            tools:layout_editor_absoluteX="178dp"
-            tools:layout_editor_absoluteY="318dp" />
+            tools:layout_conversion_absoluteWidth="88dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tV_Battery_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Battery:"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistance_info"
-        tools:layout_editor_absoluteX="142dp" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tV_mapLat"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Latitude:"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textColorHint="#FFFFFF"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/tV_mapLng"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/mapStatus"-->
-    <!--        tools:layout_editor_absoluteX="0dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tV_mapLng"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Longitude:"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textColorHint="#FFFFFF"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/tV_mapCompass"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tV_mapLat"-->
-    <!--        tools:layout_editor_absoluteX="0dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tV_mapCompass"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Compass Heading:"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textColorHint="#FFFFFF"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/tV_mapHeading"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tV_mapLng"-->
-    <!--        tools:layout_editor_absoluteX="0dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tV_mapHeading"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Speed:"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textColorHint="#FFFFFF"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/tV_Battery"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tV_mapCompass"-->
-    <!--        app:layout_constraintVertical_bias="0.691"-->
-    <!--        tools:layout_editor_absoluteX="0dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tV_Battery"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Battery:"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textColorLink="#FFFFFF"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/tV_ultrasonic"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tV_mapHeading"-->
-    <!--        tools:layout_editor_absoluteX="0dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tV_ultrasonic"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Ultrasonic values"-->
-    <!--        android:textColor="#FFFFFF"-->
-    <!--        android:textColorLink="#FFFFFF"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/bottomNavBar"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tV_Battery"-->
-    <!--        tools:layout_editor_absoluteX="60dp" />-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

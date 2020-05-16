@@ -40,7 +40,8 @@ public class InfoActivity extends AppCompatActivity  {
     //==============================BLUETOOTH==============================
 
     //==============================OUTPUT==============================
-      TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVSpeed,tVCmpsCurrent,tVCmpsRequired, tVSteerDirections, tVDistance, tVBattery;
+      TextView tVCLat,tVCLng,tVDLat,tVDLng,tVUL,tVUM,tVUR,tVUB,tVSpeed,tVCmpsCurrent,tVCmpsRequired;
+      TextView tVSteerDirections, tVDistance, tVBattery, tVRPS, tVPWM, tVMotorSpeed, tVNextCheckpoint;
       private double destinationLat = 0.0, destinationLng = 0.0;
       private double currentLat = 0.0, currentLng = 0.0;
       TextView statusInfo;
@@ -51,7 +52,7 @@ public class InfoActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info);
+        setContentView(R.layout.activity_info_main);
 
         //==============================BLUETOOTH==============================
         Intent intent = getIntent();
@@ -69,11 +70,16 @@ public class InfoActivity extends AppCompatActivity  {
           tVCmpsRequired=(TextView)findViewById(R.id.tV_CompassRequired_info);
           tVSpeed=(TextView)findViewById(R.id.tV_speed_info);
           tVSteerDirections=(TextView)findViewById(R.id.tV_steeringDirection_info);
-          tVUL=(TextView)findViewById(R.id.tV_ultraLeft_info);
-          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle_info);
-          tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
+//          tVUL=(TextView)findViewById(R.id.tV_ultraLeft_info);
+//          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle_info);
+//          tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
+//          tVUB=(TextView)findViewById(R.id.tV_ultraBack_info);
           tVDistance=(TextView)findViewById(R.id.tvDistance_info);
           tVBattery=(TextView)findViewById(R.id.tV_Battery_info);
+          tVRPS=(TextView)findViewById(R.id.tV_RPS_info);
+          tVPWM=(TextView)findViewById(R.id.tV_PWM_info);
+          tVMotorSpeed=(TextView)findViewById(R.id.tV_MotorSpeed_info);
+          tVNextCheckpoint=(TextView)findViewById(R.id.tV_CheckpointIndex_info);
 
         //==============================findViewByID==============================
 
@@ -85,12 +91,6 @@ public class InfoActivity extends AppCompatActivity  {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_debug:
-//                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.RED));
-//                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.RED));
-//                        Toast.makeText(MapsActivity.this, "Stop Pressed", Toast.LENGTH_SHORT).show();
-//                        String message1 = "$STOP\r\n";
-//                        userToast("Status: ","STOP message sent",false);
-//                        sendMessage(message1);
                         if (mChatService != null) {
                             mChatService.stop();
                         }
@@ -109,18 +109,6 @@ public class InfoActivity extends AppCompatActivity  {
                         startActivityForResult(openActivity2,1);
                         break;
                     case R.id.navigation_bluetooth:
-//                        bottomNavigationView.setItemIconTintList(ColorStateList.valueOf(Color.GREEN));
-//                        bottomNavigationView.setItemTextColor(ColorStateList.valueOf(Color.GREEN));
-//                        Toast.makeText(MapsActivity.this, "Start Pressed", Toast.LENGTH_SHORT).show();
-//                        String message2 = "$loc" +","+ Math.floor(destinationLat*1000000)/1000000 +","+ Math.floor(destinationLng*1000000)/1000000 +"\r\n";
-//                        userToast("Status: ","START message sent",false);
-//                        sendMessage(message2);
-//                            polyline = mMap.addPolyline(new PolylineOptions()
-//                                .add(new LatLng(Double.parseDouble(dirCLat),Double.parseDouble(dirCLng)), new LatLng(destinationLat, destinationLng))
-//                                .width(8)
-//                                .color(Color.GREEN));
-//                        locationThread = new locationThread();
-//                        locationThread.start();
                         Toast.makeText(InfoActivity.this, "Bluetooth Restart", Toast.LENGTH_SHORT).show();
                         mChatService.stop();
                         setupChat();
@@ -246,23 +234,26 @@ public class InfoActivity extends AppCompatActivity  {
         String dirBattery = tokenizer.nextToken();
         String dirRPS = tokenizer.nextToken();
         String dirPWM = tokenizer.nextToken();
-        String dirSonar = tokenizer.nextToken();
+        String dirUB = tokenizer.nextToken();
         String dirMotorSpeed = tokenizer.nextToken();
-        String dirMotorSpeedText = "";
         String dirCheckpointIndex = tokenizer.nextToken();
         if (dirIgnore.endsWith("canster")) {
-            tVUL.setText("Left: " + dirUL + " cm");
-            tVUM.setText("Middle: " + dirUM + " cm");
-            tVUR.setText("Right: " + dirUR + " cm");
-            tVCLat.setText("Current Latitude:\t" + dirCLat + "°");
-            tVCLng.setText("Current Longitude:\t" + dirCLng + "°");
-            tVDLat.setText("Destination Latitude:\t" + dirDLat + "°");
-            tVDLng.setText("Destination Longitude:\t" + dirDLng + "°");
-            tVCmpsCurrent.setText("Current Compass Heading:\t" + dirCCompass + "°");
-            tVCmpsRequired.setText("Required Compass Heading:\t" + dirRCompass + "°");
+//            tVUL.setText("Left: " + dirUL + " cm");
+//            tVUM.setText("Middle: " + dirUM + " cm");
+//            tVUR.setText("Right: " + dirUR + " cm");
+//            tVUB.setText("Back: " + dirUB + " cm");
+            tVCLat.setText("Latitude:\n" + dirCLat + "°");
+            tVCLng.setText("Longitude:\n" + dirCLng + "°");
+            tVDLat.setText("Latitude:\n" + dirDLat + "°");
+            tVDLng.setText("Longitude:\n" + dirDLng + "°");
+            tVCmpsCurrent.setText("Current Heading:\n" + dirCCompass + "°");
+            tVCmpsRequired.setText("Required Heading:\n" + dirRCompass + "°");
             tVSpeed.setText("Speed:\t" + dirSpeed + " kph");
             tVDistance.setText("Distance till Destination:\t" + dirDistance + " meters");
-            tVBattery.setText("Battery:\t" + dirBattery + "\n" + "RPS:\t " + dirRPS +  "\n" + "PWM:\t" + dirPWM + "\n" + "Sonar: \t" + dirSonar + "\n" + "Motor Speed:\t" + dirMotorSpeed + "\n" + "Checkpoint Index\t" + dirCheckpointIndex +"\n");
+            tVBattery.setText("Battery:\t" + dirBattery + " volts");
+            tVRPS.setText("RPS:\t" + dirRPS);
+            tVPWM.setText("PWM:\t" + dirPWM);
+            tVNextCheckpoint.setText("Waypoint Index:\t" + dirCheckpointIndex);
             if (dirReached.equals("1")) {
                 statusInfo.setText("Status: Destination Reached");
                 manageBlinkEffect();
@@ -288,25 +279,25 @@ public class InfoActivity extends AppCompatActivity  {
             }
             switch (dirMotorSpeed) {
                 case "-3":
-                    dirMotorSpeedText = "Reverse Fast";
+                    tVMotorSpeed.setText("Motor Speed: Reverse Fast");
                     break;
                 case "-2":
-                    dirMotorSpeedText = "Reverse Medium";
+                    tVMotorSpeed.setText("Motor Speed: Reverse Medium");
                     break;
                 case "-1":
-                    dirMotorSpeedText = "Reverse Slow";
+                    tVMotorSpeed.setText("Motor Speed: Reverse Slow");
                     break;
                 case "0":
-                    dirMotorSpeedText = "Neutral";
+                    tVMotorSpeed.setText("Motor Speed: Neutral");
                     break;
                 case "1":
-                    dirMotorSpeedText = "Forward Slow";
+                    tVMotorSpeed.setText("Motor Speed: Forward Slow");
                     break;
                 case "2":
-                    dirMotorSpeedText = "Forward Medium";
+                    tVMotorSpeed.setText("Motor Speed: Forward Medium");
                     break;
                 case "3":
-                    dirMotorSpeedText = "Forward Fast";
+                    tVMotorSpeed.setText("Motor Speed: Forward Fast");
                     break;
             }
         }
@@ -337,7 +328,7 @@ public class InfoActivity extends AppCompatActivity  {
         finish();
     }
     public void manageBlinkEffect() {
-        ObjectAnimator anim = ObjectAnimator.ofInt(statusInfo,"backgroundColor",Color.BLACK,Color.RED,Color.BLACK);
+        ObjectAnimator anim = ObjectAnimator.ofInt(statusInfo,"backgroundColor",Color.DKGRAY,Color.RED,Color.DKGRAY);
         anim.setDuration(800);
         anim.setEvaluator(new ArgbEvaluator());
 //        anim.setRepeatMode(Animation.REVERSE);
