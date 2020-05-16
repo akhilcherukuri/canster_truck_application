@@ -163,11 +163,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
         // Add a marker in SJSU 10th Street and move the camera
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        LatLng cansterCurrentLocation = new LatLng(37.339312, -121.881111);
+        LatLng cansterCurrentLocation = new LatLng(37.339325, -121.880742);
         MarkerOptions a = new MarkerOptions().position(cansterCurrentLocation).title("Canster Truck").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         //currentLocationMarker = mMap.addMarker(a);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(cansterCurrentLocation));
-        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),17.0f ));
+        mMap.animateCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(cansterCurrentLocation.latitude,cansterCurrentLocation.longitude),18.5f ));
 
         for(int i = 0 ; i < waypointsArray.size() ; i++) {
             IconGenerator iconFactory = new IconGenerator(this);

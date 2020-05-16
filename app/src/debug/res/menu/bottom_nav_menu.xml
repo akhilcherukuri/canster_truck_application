@@ -7,6 +7,7 @@
         android:icon="@drawable/ic_bluetooth_black_24dp"
         app:itemIconTint="@android:color/holo_green_light"
         app:itemTextColor="@android:color/holo_green_light"
+        app:itemTextAppearance="@style/Style123"
         android:title="Bluetooth" />
 
     <item
@@ -15,20 +16,23 @@
         android:iconTint="@android:color/holo_blue_bright"
         app:itemIconTint="@android:color/holo_blue_bright"
         app:itemTextColor="@android:color/holo_blue_bright"
-        android:title="Maps"/>
+        app:itemTextAppearance="@style/Style123"
+        android:title="Map" />
 
     <item
         android:id="@+id/navigation_info"
-        android:icon="@drawable/ic_info_outline_black_24dp"
+        android:icon="@drawable/ic_dashboard_black_24dp"
         app:itemIconTint="@android:color/holo_red_light"
         app:itemTextColor="@android:color/holo_red_light"
-        android:title="Info" />
+        app:itemTextAppearance="@style/Style123"
+        android:title="Dashboard"/>
 
     <item
         android:id="@+id/navigation_debug"
         android:icon="@drawable/ic_info_outline_black_24dp"
         app:itemIconTint="@android:color/holo_red_light"
         app:itemTextColor="@android:color/holo_red_light"
-        android:title="Debug" />
+        android:title="Log"
+        app:itemTextAppearance="@style/Style123"/>
 
 </menu>
