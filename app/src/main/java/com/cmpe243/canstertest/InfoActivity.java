@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class InfoActivity extends AppCompatActivity  {
       private double currentLat = 0.0, currentLng = 0.0;
       TextView statusInfo;
       String dirCLat ="0.0" , dirCLng ="0.0";
+      ProgressBar batteryProgressBar;
     //==============================OUTPUT==============================
 
 
@@ -70,16 +72,17 @@ public class InfoActivity extends AppCompatActivity  {
           tVCmpsRequired=(TextView)findViewById(R.id.tV_CompassRequired_info);
           tVSpeed=(TextView)findViewById(R.id.tV_speed_info);
           tVSteerDirections=(TextView)findViewById(R.id.tV_steeringDirection_info);
-//          tVUL=(TextView)findViewById(R.id.tV_ultraLeft_info);
-//          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle_info);
-//          tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
-//          tVUB=(TextView)findViewById(R.id.tV_ultraBack_info);
+          tVUL=(TextView)findViewById(R.id.tV_ultraLeft_info);
+          tVUM=(TextView)findViewById(R.id.tV_ultraMiddle_info);
+          tVUR=(TextView)findViewById(R.id.tV_ultraRight_info);
+          tVUB=(TextView)findViewById(R.id.tV_ultraBack_info);
           tVDistance=(TextView)findViewById(R.id.tvDistance_info);
           tVBattery=(TextView)findViewById(R.id.tV_Battery_info);
           tVRPS=(TextView)findViewById(R.id.tV_RPS_info);
           tVPWM=(TextView)findViewById(R.id.tV_PWM_info);
           tVMotorSpeed=(TextView)findViewById(R.id.tV_MotorSpeed_info);
           tVNextCheckpoint=(TextView)findViewById(R.id.tV_CheckpointIndex_info);
+          batteryProgressBar=(ProgressBar) findViewById(R.id.progressBarBattery);
 
         //==============================findViewByID==============================
 
@@ -162,6 +165,39 @@ public class InfoActivity extends AppCompatActivity  {
         connectDevice(false);
     }
 
+    public int progressBarValue(int OldValue){
+        double OldMax = 8.0 , OldMin = 0.0;
+        int NewValue, NewRange, NewMin = 0, NewMax = 100;
+        int OldRange = (int) (OldMax - OldMin);
+        if (OldRange == 0)
+            NewValue = NewMin;
+        else
+        {
+            NewRange = (NewMax - NewMin);
+            NewValue = (int) ((((OldValue - OldMin) * NewRange) / OldRange) + NewMin);
+        }
+        return NewValue;
+    }
+
+//    private void setProgressValue(final int progress) {
+//
+//        // set the progress
+//        .setProgress(progress);
+//        // thread is used to change the progress value
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                setProgressValue(progress + 10);
+//            }
+//        });
+//        thread.start();
+//    }
+
 /*==================================================================================================================================
     Handler allows you to send and process Message and Runnable objects associated with a thread's MessageQueue.
 ==================================================================================================================================*/
@@ -238,10 +274,10 @@ public class InfoActivity extends AppCompatActivity  {
         String dirMotorSpeed = tokenizer.nextToken();
         String dirCheckpointIndex = tokenizer.nextToken();
         if (dirIgnore.endsWith("canster")) {
-//            tVUL.setText("Left: " + dirUL + " cm");
-//            tVUM.setText("Middle: " + dirUM + " cm");
-//            tVUR.setText("Right: " + dirUR + " cm");
-//            tVUB.setText("Back: " + dirUB + " cm");
+            tVUL.setText("Left:\n " + dirUL + " cm");
+            tVUM.setText("Middle:\n " + dirUM + " cm");
+            tVUR.setText("Right:\n " + dirUR + " cm");
+            tVUB.setText("Back:\n " + dirUB + " cm");
             tVCLat.setText("Latitude:\n" + dirCLat + "°");
             tVCLng.setText("Longitude:\n" + dirCLng + "°");
             tVDLat.setText("Latitude:\n" + dirDLat + "°");
@@ -300,6 +336,8 @@ public class InfoActivity extends AppCompatActivity  {
                     tVMotorSpeed.setText("Motor Speed: Forward Fast");
                     break;
             }
+            int value1 = progressBarValue(Integer. parseInt(dirBattery));
+            batteryProgressBar.setProgress(value1,true);
         }
     }
 /*==================================================================================================================================

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
 
     <ScrollView
@@ -239,8 +239,71 @@
                             android:paddingRight="25dp"
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
-                            android:layout_weight="1"
                             android:text="Distance from Obstacle"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tV_ultraLeft_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Left"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_ultraMiddle_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Front"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_ultraRight_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Right"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tV_ultraBack_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Back"
                             android:textAlignment="center"
                             android:textColorHint="@color/white"
                             android:fontFamily="@font/googlesans_bold"
@@ -425,7 +488,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="425dp"
-                    android:layout_height="50dp"
+                    android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:layout_gravity="center"
                     app:cardBackgroundColor="@color/grey2"
@@ -452,6 +515,20 @@
                             android:fontFamily="@font/googlesans_bold"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBarBattery"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:progress="90"
+                            android:progressDrawable="@drawable/progressbar_rounded_corner"/>
 
                     </LinearLayout>
 
