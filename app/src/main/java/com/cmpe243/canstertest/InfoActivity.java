@@ -165,7 +165,7 @@ public class InfoActivity extends AppCompatActivity  {
         connectDevice(false);
     }
 
-    public int progressBarValue(int OldValue){
+    public int progressBarValue(double OldValue){
         double OldMax = 8.0 , OldMin = 0.0;
         int NewValue, NewRange, NewMin = 0, NewMax = 100;
         int OldRange = (int) (OldMax - OldMin);
@@ -336,7 +336,7 @@ public class InfoActivity extends AppCompatActivity  {
                     tVMotorSpeed.setText("Motor Speed: Forward Fast");
                     break;
             }
-            int value1 = progressBarValue(Integer. parseInt(dirBattery));
+            int value1 = (int) progressBarValue(Double.parseDouble(dirBattery));
             batteryProgressBar.setProgress(value1,true);
         }
     }
