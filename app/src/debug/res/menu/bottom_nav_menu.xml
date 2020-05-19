@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_bluetooth"
         android:icon="@drawable/ic_bluetooth_black_24dp"
+        app:itemIconTint="@android:color/holo_green_light"
+        app:itemTextColor="@android:color/holo_green_light"
+        app:itemTextAppearance="@style/Style123"
         android:title="Bluetooth" />
 
     <item
         android:id="@+id/navigation_maps"
         android:icon="@drawable/ic_map_black_24dp"
-        android:title="Maps"/>
+        android:iconTint="@android:color/holo_blue_bright"
+        app:itemIconTint="@android:color/holo_blue_bright"
+        app:itemTextColor="@android:color/holo_blue_bright"
+        app:itemTextAppearance="@style/Style123"
+        android:title="Map" />
+
+    <item
+        android:id="@+id/navigation_info"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        app:itemIconTint="@android:color/holo_red_light"
+        app:itemTextColor="@android:color/holo_red_light"
+        app:itemTextAppearance="@style/Style123"
+        android:title="Dashboard"/>
 
     <item
         android:id="@+id/navigation_debug"
         android:icon="@drawable/ic_info_outline_black_24dp"
-        android:title="Debug" />
+        app:itemIconTint="@android:color/holo_red_light"
+        app:itemTextColor="@android:color/holo_red_light"
+        android:title="Log"
+        app:itemTextAppearance="@style/Style123"/>
 
 </menu>

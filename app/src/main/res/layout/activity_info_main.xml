@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/googlesans_bold"
+                android:text=" Canster Truck Dashboard"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="1"
+                android:columnOrderPreserved="false"
+                android:rowCount="4">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/infoStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Status: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/ignore_current"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Current Coordinates"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tV_cLat_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Latitude: "
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_cLng_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Longitude: "
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/ignore_destination"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Destination Coordinates"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tV_dLat_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Latitude: "
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_dLng_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Longitude: "
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/ignore_distilldest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Distance from Obstacle"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tV_ultraLeft_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Left"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_ultraMiddle_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Front"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_ultraRight_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Right"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/cariconsensor"
+                            tools:srcCompat="@drawable/cariconsensor"
+                            tools:visibility="visible"/>
+
+
+                        <TextView
+                            android:id="@+id/tV_ultraBack_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Back"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/ignore_compass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Compass"
+                            android:textAlignment="center"
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tV_CompassCurrent_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Current: "
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tV_CompassRequired_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="10dp"
+                                android:layout_weight="1"
+                                android:text="Required:"
+                                android:textAlignment="center"
+                                android:textColorHint="@color/white"
+                                android:fontFamily="@font/googlesans_bold"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_speed_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Speed: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_steeringDirection_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Steering Direction: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tvDistance_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Distance till Destination: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_Battery_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Battery: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <ProgressBar
+                            android:id="@+id/progressBarBattery"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="370dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_gravity="center"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:progress="50"
+                            android:progressDrawable="@drawable/progressbar_rounded_corner"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_RPS_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="RPS: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_PWM_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="PWM: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_MotorSpeed_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Motor Speed: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="425dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/grey2"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+
+                        <TextView
+                            android:id="@+id/tV_CheckpointIndex_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_weight="1"
+                            android:text="Checkpoint Index: "
+                            android:textColorHint="@color/white"
+                            android:fontFamily="@font/googlesans_bold"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/black"
+        android:hapticFeedbackEnabled="true"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

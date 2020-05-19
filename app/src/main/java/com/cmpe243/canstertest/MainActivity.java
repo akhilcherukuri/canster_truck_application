@@ -59,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
+        checkBluetoothPermissions();
+        enableBluetooth();
         bluetoothStart();
+//        listViewPaired.setAdapter(null);
+//        pairedDevicesArrayAdapter.clear();
+//        doBluetoothDiscovery();
+//        statusBluetooth.setText("BLUETOOTH DISCOVERY");
     }
 
     public void onOffButtonClicked(View view) {
@@ -95,9 +101,14 @@ public class MainActivity extends AppCompatActivity {
         if(!bluetoothAdapter.isEnabled()) {
             statusBluetooth.setText("BLUETOOTH DISABLED");
         }
-        else {statusBluetooth.setText("BLUETOOTH ENABLED");}
+        else {
+            listViewPaired.setAdapter(null);
+            pairedDevicesArrayAdapter.clear();
+            doBluetoothDiscovery();
+            statusBluetooth.setText("BLUETOOTH DISCOVERY");
+        }
         //statusBluetooth.setText("");
-        listViewPaired.setAdapter(null);
+        //listViewPaired.setAdapter(null);
 //        listViewNewDevices.setAdapter(null);
     }
 
@@ -130,13 +141,13 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "BLUETOOTH: TURNING ON");
             Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivity(enableBTIntent);
-            searchButton.setEnabled(true);
+//            searchButton.setEnabled(true);
         }
-        if(bluetoothAdapter.isEnabled()){
-            Log.d(TAG, "enableDisableBT: disabling BT.");
-            bluetoothAdapter.disable();
-            searchButton.setEnabled(false);
-        }
+//        if(bluetoothAdapter.isEnabled()){
+//            Log.d(TAG, "enableDisableBT: disabling BT.");
+//            bluetoothAdapter.disable();
+//            searchButton.setEnabled(false);
+//        }
     }
 
     private void doBluetoothDiscovery() {
